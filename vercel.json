@@ -1,0 +1,10 @@
+{
+  "vercelIgnore": [
+    "node_modules",
+    ".git",
+    ".next",
+    "coverage"
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
+}
