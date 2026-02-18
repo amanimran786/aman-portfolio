@@ -1,254 +1,168 @@
 export default function Skills() {
   const skillCategories = [
     {
-      category: "Frontend",
+      category: "🔒 Security & Cybersecurity",
       skills: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "HTML/CSS",
+        "OWASP Top 10",
+        "Secure Coding",
+        "Authentication & Authorization",
+        "Encryption & Hashing",
+        "Security Testing",
+        "Penetration Testing",
+        "Threat Analysis",
+        "Binary Analysis",
+      ],
+    },
+    {
+      category: "🤖 AI & Machine Learning",
+      skills: [
+        "Machine Learning",
+        "AI Algorithms",
+        "Neural Networks",
+        "Data Analysis",
+        "Pattern Recognition",
+        "Model Training",
+        "Threat Detection",
+      ],
+    },
+    {
+      category: "📱 Mobile Development",
+      skills: [
+        "SwiftUI",
+        "Kotlin",
+        "Android Studio",
+        "Xcode",
+        "Mobile UI/UX",
+        "iOS Development",
+        "Android Development",
+      ],
+    },
+    {
+      category: "💻 Programming Languages",
+      skills: [
+        "Java",
         "JavaScript",
-        "Redux",
-        "Material UI",
-      ],
-    },
-    {
-      category: "Backend",
-      skills: [
-        "Node.js",
-        "Express",
         "Python",
-        "Django",
-        "RESTful APIs",
-        "GraphQL",
-        "JWT Authentication",
+        "C++",
+        "TypeScript",
+        "HTML/CSS",
+        "Swift",
+        "Kotlin",
       ],
     },
     {
-      category: "Databases",
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis", "SQL"],
-    },
-    {
-      category: "Tools & Platforms",
+      category: "🛠️ Development Tools",
       skills: [
-        "Git/GitHub",
-        "Docker",
-        "AWS",
-        "Vercel",
-        "Netlify",
-        "CI/CD",
-        "Linux",
+        "GitHub",
+        "Git",
+        "IntelliJ",
+        "Android Studio",
+        "Xcode",
+        "VS Code",
+        "Slack",
+        "Microsoft Office",
+        "GSuite",
       ],
     },
     {
-      category: "Data Structures & Algorithms",
+      category: "📊 Data & Databases",
       skills: [
-        "Arrays & Hashing",
-        "Linked Lists",
-        "Stacks & Queues",
-        "Trees & Graphs",
-        "Dynamic Programming",
-        "Sorting & Searching",
-        "Binary Search",
+        "SQL",
+        "Database Management",
+        "Tableau",
+        "Data Structures",
+        "Data Analysis",
+        "DBMS",
+        "Query Optimization",
       ],
     },
     {
-      category: "Soft Skills",
+      category: "🏗️ Software Architecture",
+      skills: [
+        "System Design",
+        "Architecture Patterns",
+        "Scalability",
+        "Database Design",
+        "API Design",
+        "Microservices",
+      ],
+    },
+    {
+      category: "🎓 Professional Skills",
       skills: [
         "Problem Solving",
-        "Team Collaboration",
         "Communication",
+        "Organization",
+        "Collaboration",
+        "Integrity",
+        "Leadership",
         "Project Management",
-        "Debugging",
-        "Code Review",
-        "Documentation",
       ],
     },
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-slate-100 dark:bg-slate-800 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            My Skills
+    <div className="cyber-grid">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
+      </div>
+
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h1 className="text-5xl font-bold text-white mb-4 text-glow-lg">
+            🔧 System Capabilities
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300">
-            Technical expertise and professional capabilities
+          <p className="text-lg text-slate-300 font-mono">
+            Technical expertise and professional capabilities across security, AI, and full-stack development
           </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Skills Grid */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-slate-700 rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow"
+        {/* Skills Grid */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillCategories.map((category, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 neon-border border border-red-500/30 hover:shadow-xl hover:shadow-red-600/30 transition-all transform hover:scale-105"
+              >
+                <h2 className="text-lg font-bold text-red-400 mb-4 text-glow">
+                  {category.category}
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono hover:bg-red-900/50 transition-colors animate-pulse"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact CTA */}
+        <section className="bg-gradient-to-r from-red-950/80 to-red-900/80 backdrop-blur-sm text-white py-16 border-t border-red-500/30">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-glow-lg font-mono mb-4">
+              {'< READY_TO_DEPLOY />'}
+            </h2>
+            <p className="text-lg text-red-100 mb-8 font-mono">
+              Let's build secure, innovative solutions together
+            </p>
+            <a
+              href="mailto:aman.imran@sjsu.edu"
+              className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all transform hover:scale-105 font-mono neon-border-glow"
             >
-              <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6">
-                {category.category}
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Proficiency Levels */}
-      <section className="bg-slate-100 dark:bg-slate-800 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
-            Proficiency Levels
-          </h2>
-
-          <div className="space-y-8">
-            {/* Expert Level */}
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                Expert
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">
-                Deep knowledge with years of production experience
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "JavaScript",
-                  "React",
-                  "TypeScript",
-                  "Node.js",
-                  "Python",
-                  "SQL",
-                ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Advanced Level */}
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                Advanced
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">
-                Strong knowledge with practical application experience
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Next.js",
-                  "Tailwind CSS",
-                  "MongoDB",
-                  "Express",
-                  "Git",
-                  "Docker",
-                ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Intermediate Level */}
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                Intermediate
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">
-                Solid understanding with growing experience
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "GraphQL",
-                  "AWS",
-                  "PostgreSQL",
-                  "Redux",
-                  "Django",
-                  "CI/CD",
-                ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {'>> SEND_MESSAGE'}
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
-          Certifications & Learning
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white dark:bg-slate-700 rounded-lg shadow-lg p-8">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-              NeetCode 150
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-4">
-              Comprehensive guide to 150 essential LeetCode problems covering all major algorithmic topics.
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Status: In Progress
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-700 rounded-lg shadow-lg p-8">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-              System Design Basics
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-4">
-              Studying fundamental system design concepts including scalability, databases, and architecture patterns.
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Status: In Progress
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-blue-600 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Interested in collaborating?
-          </h2>
-          <p className="text-lg mb-8 text-blue-100">
-            Let's build something amazing together
-          </p>
-          <a
-            href="mailto:aman.imran@sjsu.edu"
-            className="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-colors"
-          >
-            Get In Touch
-          </a>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }
