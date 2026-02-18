@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function Home() {
   return (
@@ -39,18 +40,12 @@ export default function Home() {
 
             {/* Animated Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/projects"
-                className="inline-block bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-red-600/50 neon-border-glow transform hover:scale-105 active:scale-95"
-              >
+              <AnimatedButton href="/projects" variant="primary">
                 🎯 INITIATE_PROJECTS.exe
-              </Link>
-              <Link
-                href="/about"
-                className="inline-block bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold py-3 px-8 rounded-lg transition-all duration-300 border-2 border-slate-600 hover:border-red-500 transform hover:scale-105 active:scale-95"
-              >
+              </AnimatedButton>
+              <AnimatedButton href="/about" variant="secondary">
                 📋 SYSTEM_INFO
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
         </section>
