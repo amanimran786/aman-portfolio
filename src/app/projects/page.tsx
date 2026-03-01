@@ -323,6 +323,7 @@ export default function Projects() {
           </a>
         </div>
       </section>
+      </div>
     </div>
   );
 }
