@@ -4,21 +4,34 @@ import { useEffect, useState } from 'react';
 
 export default function PageTransition() {
   const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2800);
-    return () => clearTimeout(timer);
+    const hideTimer = setTimeout(() => setIsLoading(false), 2800);
+
+    // Animate progress from 0 to 100 over ~2.5s
+    const start = Date.now();
+    const duration = 2500;
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+      setProgress(pct);
+      if (pct < 100) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    return () => clearTimeout(hideTimer);
   }, []);
 
   if (!isLoading) return null;
+
+  const filled = Math.round((progress / 100) * 18);
+  const bar = '\u2588'.repeat(filled) + '\u2591'.repeat(18 - filled);
 
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
       {/* Main Loading Screen */}
       <div className="absolute inset-0 bg-black animate-fade-out-slow">
-        {/* Scanline overlay */}
-        <div className="absolute inset-0 animate-scan-line-fast opacity-20"></div>
-
         {/* Center Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {/* Animated Terminal Window */}
@@ -51,42 +64,20 @@ export default function PageTransition() {
 
               {/* Loading Bar */}
               <div className="mt-4 bg-slate-900 border border-red-500/50 h-2 rounded overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-red-500 to-red-600 animate-loading-bar"></div>
+                <div
+                  className="h-full bg-gradient-to-r from-red-500 to-red-600 transition-all duration-100 ease-linear"
+                  style={{ width: `${progress}%` }}
+                ></div>
               </div>
 
-              {/* Status */}
-              <div className="text-right text-xs text-red-300 mt-2 animate-pulse">
-                [████████████░░░░░░] 85%
+              {/* Status — live counter */}
+              <div className="text-right text-xs text-red-300 mt-2 font-mono">
+                [{bar}] {progress}%
               </div>
             </div>
           </div>
-
-          {/* Animated Particles */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-red-500 rounded-full animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  opacity: Math.random() * 0.6 + 0.2,
-                }}
-              ></div>
-            ))}
-          </div>
-
-          {/* Grid Lines Animation */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-b from-red-500/10 via-transparent to-red-500/10 animate-pulse-slow"></div>
-          </div>
         </div>
       </div>
-
-      {/* Glitch Lines */}
-      <div className="absolute top-1/4 left-0 w-full h-32 bg-red-500/20 animate-glitch-line" style={{ animationDelay: '0.5s' }}></div>
-      <div className="absolute bottom-1/3 left-0 w-full h-16 bg-red-500/10 animate-glitch-line" style={{ animationDelay: '1.2s' }}></div>
     </div>
   );
 }

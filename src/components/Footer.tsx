@@ -49,7 +49,7 @@ export default function Footer() {
               </a>
               <br />
               <a
-                href="https://github.com"
+                href="https://github.com/amanimran786"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-blue-400 transition-colors"

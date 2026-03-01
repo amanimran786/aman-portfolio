@@ -61,49 +61,49 @@ export default function Home() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Project Card 1 */}
+              {/* Project Card 1 — AI Malware Detection */}
               <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-float">🔐</span>
+                  <span className="text-3xl animate-float">🤖</span>
                   <h3 className="text-xl font-bold text-red-400 text-glow">
-                    SECURE_ARCHITECTURE
+                    AI_MALWARE_DETECTION
                   </h3>
                 </div>
                 <p className="text-slate-300 mb-4 font-mono text-sm">
-                  Zero-trust security model • AES-256 encryption • JWT auth • Rate limiting • DDoS protection
+                  LightGBM classifier trained on 1M+ PE files • EMBER dataset • FastAPI backend • Glassmorphic UI • 2-3s scan
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {['Next.js', 'TypeScript', 'Security'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono animate-pulse">
+                  {['Python', 'FastAPI', 'LightGBM', 'ML'].map((tech) => (
+                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
                       {tech}
                     </span>
                   ))}
                 </div>
-                <a href="#" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> EXECUTE_PROJECT.sh'}
+                <a href="https://github.com/vuvic/AI-Malware-Detection" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
+                  {'>> VIEW_SOURCE'}
                 </a>
               </div>
 
-              {/* Project Card 2 */}
+              {/* Project Card 2 — Phishing Detector */}
               <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-rotate-3d">🎯</span>
+                  <span className="text-3xl animate-rotate-3d">🔍</span>
                   <h3 className="text-xl font-bold text-red-400 text-glow">
-                    CTF_SOLUTIONS
+                    PHISHING_DETECTOR
                   </h3>
                 </div>
                 <p className="text-slate-300 mb-4 font-mono text-sm">
-                  Binary exploitation • Cryptography • Web security • Buffer overflow • Privilege escalation
+                  ML Chrome extension • Random Forest on 10K+ URLs • Manifest V3 • Real-time URL classification
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {['Python', 'Algorithms', 'Security'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono animate-pulse">
+                  {['Python', 'Chrome API', 'scikit-learn', 'ML'].map((tech) => (
+                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
                       {tech}
                     </span>
                   ))}
                 </div>
-                <a href="#" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> SOLVE_CHALLENGE.py'}
+                <a href="https://github.com/amanimran786/PhishingDetectorExtension" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
+                  {'>> VIEW_SOURCE'}
                 </a>
               </div>
             </div>
@@ -128,16 +128,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'SECURE_DEVELOPMENT',
-                skills: ['OWASP Top 10', 'Secure Coding', 'Auth & AuthZ', 'Encryption', 'Pen Testing'],
+                title: 'LANGUAGES',
+                skills: ['Java', 'Python', 'TypeScript', 'Swift', 'C++'],
               },
               {
-                title: 'FULL_STACK_CORE',
-                skills: ['Next.js', 'Node.js', 'Databases', 'API_SEC', 'Cloud_Arch'],
+                title: 'FRAMEWORKS',
+                skills: ['Next.js', 'Spring Boot', 'FastAPI', 'SwiftUI', 'Tailwind'],
               },
               {
-                title: 'PROBLEM_SOLVING',
-                skills: ['Algorithms', 'System_Design', 'Performance', 'Binary_Analysis', 'CTF'],
+                title: 'DATA_&_TOOLS',
+                skills: ['MySQL', 'scikit-learn', 'Git', 'Docker', 'LightGBM'],
               },
             ].map((category, idx) => (
               <div
