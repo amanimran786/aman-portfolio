@@ -28,13 +28,13 @@ export default function Home() {
             {/* Glitchy Subtitle */}
             <div className="mb-4 relative h-12 flex items-center justify-center">
               <p className="text-xl md:text-2xl text-red-500 font-mono font-semibold animate-glitch">
-                FULL_STACK_DEVELOPER | CYBERSECURITY | AI_ENTHUSIAST
+                FULL-STACK DEVELOPER | CYBERSECURITY | AI & ML | MOBILE DEV
               </p>
             </div>
 
             {/* Typing effect text */}
             <p className="text-lg text-slate-300 mb-12 max-w-3xl mx-auto font-mono animate-float">
-              {'> Building secure, scalable applications with military-grade security'}
+              {'> SJSU Software Engineering grad. Building secure, innovative, and scalable apps in Python, TypeScript, Swift, and Java.'}
               <span className="terminal-cursor"></span>
             </p>
 
@@ -60,8 +60,57 @@ export default function Home() {
               ⚡ ELITE_SECURITY_PROJECTS
             </h2>
 
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Project Card 1 — AI Malware Detection */}
+              {/* OSINT WorldView */}
+              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl animate-float">🌍</span>
+                  <h3 className="text-xl font-bold text-red-400 text-glow">
+                    OSINT_WORLDVIEW
+                  </h3>
+                </div>
+                <p className="text-slate-300 mb-4 font-mono text-sm">
+                  Full-stack intelligence dashboard for monitoring & analyzing open-source signals. Python, FastAPI, React, Docker, Celery.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['Python', 'FastAPI', 'React', 'Docker', 'Celery'].map((tech) => (
+                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <a href="https://github.com/amanimran786/OSINT-WorldView" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
+                  {'>> VIEW_SOURCE'}
+                </a>
+              </div>
+
+              {/* PatternQuest - DSA iOS App */}
+              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl animate-rotate-3d">🧩</span>
+                  <h3 className="text-xl font-bold text-red-400 text-glow">
+                    PATTERNQUEST
+                  </h3>
+                </div>
+                <p className="text-slate-300 mb-4 font-mono text-sm">
+                  SwiftUI iOS app with interactive DSA levels — pattern recognition, Two Sum, sliding window. CI/CD with GitHub Actions.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['Swift', 'SwiftUI', 'Xcode', 'CI/CD', 'iOS'].map((tech) => (
+                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <a href="https://github.com/amanimran786/PatternQuest" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
+                  {'>> VIEW_SOURCE'}
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {/* AI Malware Detection */}
               <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-3xl animate-float">🤖</span>
@@ -84,7 +133,7 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Project Card 2 — Phishing Detector */}
+              {/* Phishing Detector Extension */}
               <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-3xl animate-rotate-3d">🔍</span>
