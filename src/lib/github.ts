@@ -8,6 +8,7 @@ const ADDITIONAL_REPO_LIMIT = 6;
 const FEATURED_REPO_NAMES = [
   'OSINT-WorldView',
   'PatternQuest',
+  'AI-Malware-Detection',
   'PhishingDetectorExtension',
   'FinGuard',
   'FoodBankInventorySystem',
