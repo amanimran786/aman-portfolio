@@ -41,11 +41,30 @@ cd aman-portfolio
 # Install dependencies
 npm install
 
+# Configure GitHub sync (optional token recommended)
+cp .env.example .env.local
+
 # Start development server
 npm run dev
 ```
 
 Visit `http://localhost:3000` to see your portfolio.
+
+## 🔐 Environment Variables
+
+Create `.env.local` and configure:
+
+```bash
+# Optional: defaults to amanimran786
+GITHUB_USERNAME=amanimran786
+
+# Optional but recommended for higher API rate limits
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+- Without `GITHUB_TOKEN`: public GitHub API limits are lower and can trigger temporary fallback mode.
+- With `GITHUB_TOKEN`: higher rate limit and more stable live sync.
+- Fallback behavior: if GitHub is temporarily unavailable, the app serves the last successful cached snapshot when possible.
 
 ## 🏗️ Project Structure
 

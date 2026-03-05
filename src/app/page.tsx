@@ -1,7 +1,34 @@
 import Link from 'next/link';
 import AnimatedButton from '@/components/AnimatedButton';
+import { getPortfolioData } from '@/lib/github';
 
-export default function Home() {
+function buildHeroLine(bio: string | null, company: string | null, location: string | null): string {
+  const defaultLine =
+    'SJSU Software Engineering grad. Building secure, innovative, and scalable apps in Python, TypeScript, Swift, and Java.';
+
+  if (!bio && !company && !location) {
+    return defaultLine;
+  }
+
+  const parts: string[] = [];
+  if (bio) {
+    parts.push(bio);
+  }
+  if (company) {
+    parts.push(`Currently shipping at ${company}.`);
+  }
+  if (location) {
+    parts.push(`Based in ${location}.`);
+  }
+
+  return parts.join(' ');
+}
+
+export default async function Home() {
+  const { profile, featuredProjects, githubUrl, isFallback, fallbackReason } = await getPortfolioData();
+  const heroLine = buildHeroLine(profile.bio, profile.company, profile.location);
+  const homeFeatured = featuredProjects.slice(0, 4);
+
   return (
     <div className="cyber-grid">
       {/* Animated Background */}
@@ -22,7 +49,7 @@ export default function Home() {
 
             {/* Animated Main Title */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-glow-pulse">
-              {'<'} Aman Imran {'>'}
+              {'<'} {profile.name || 'Aman Imran'} {'>'}
             </h1>
 
             {/* Glitchy Subtitle */}
@@ -34,7 +61,7 @@ export default function Home() {
 
             {/* Typing effect text */}
             <p className="text-lg text-slate-300 mb-12 max-w-3xl mx-auto font-mono animate-float">
-              {'> SJSU Software Engineering grad. Building secure, innovative, and scalable apps in Python, TypeScript, Swift, and Java.'}
+              {`> ${heroLine}`}
               <span className="terminal-cursor"></span>
             </p>
 
@@ -60,102 +87,65 @@ export default function Home() {
               ⚡ ELITE_SECURITY_PROJECTS
             </h2>
 
+            {isFallback && (
+              <div className="mb-8 rounded-lg border border-red-500/40 bg-red-950/30 p-4 text-sm font-mono text-red-200">
+                {'>> FALLBACK_MODE: '}
+                {fallbackReason || 'Displaying last successful GitHub snapshot.'}
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* OSINT WorldView */}
-              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-float">🌍</span>
-                  <h3 className="text-xl font-bold text-red-400 text-glow">
-                    OSINT_WORLDVIEW
-                  </h3>
+              {homeFeatured.map((project) => (
+                <div
+                  key={project.id}
+                  className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl animate-float">{project.icon}</span>
+                    <h3 className="text-xl font-bold text-red-400 text-glow uppercase">
+                      {project.repoName}
+                    </h3>
+                  </div>
+                  <p className="text-slate-300 mb-4 font-mono text-sm">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-4 text-sm font-mono">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-red-400 hover:text-red-300 font-semibold transition-colors"
+                    >
+                      {'>> VIEW_SOURCE'}
+                    </a>
+                    {project.homepageUrl && (
+                      <a
+                        href={project.homepageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red-400 hover:text-red-300 font-semibold transition-colors"
+                      >
+                        {'>> LIVE_DEMO'}
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <p className="text-slate-300 mb-4 font-mono text-sm">
-                  Full-stack intelligence dashboard for monitoring & analyzing open-source signals. Python, FastAPI, React, Docker, Celery.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Python', 'FastAPI', 'React', 'Docker', 'Celery'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a href="https://github.com/amanimran786/OSINT-WorldView" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> VIEW_SOURCE'}
-                </a>
-              </div>
-
-              {/* PatternQuest - DSA iOS App */}
-              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-rotate-3d">🧩</span>
-                  <h3 className="text-xl font-bold text-red-400 text-glow">
-                    PATTERNQUEST
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 font-mono text-sm">
-                  SwiftUI iOS app with interactive DSA levels — pattern recognition, Two Sum, sliding window. CI/CD with GitHub Actions.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Swift', 'SwiftUI', 'Xcode', 'CI/CD', 'iOS'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a href="https://github.com/amanimran786/PatternQuest" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> VIEW_SOURCE'}
-                </a>
-              </div>
+              ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-              {/* AI Malware Detection */}
-              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-float">🤖</span>
-                  <h3 className="text-xl font-bold text-red-400 text-glow">
-                    AI_MALWARE_DETECTION
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 font-mono text-sm">
-                  LightGBM classifier trained on 1M+ PE files • EMBER dataset • FastAPI backend • Glassmorphic UI • 2-3s scan
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Python', 'FastAPI', 'LightGBM', 'ML'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a href="https://github.com/vuvic/AI-Malware-Detection" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> VIEW_SOURCE'}
-                </a>
+            {homeFeatured.length === 0 && (
+              <div className="rounded-lg border border-red-500/30 bg-slate-800/40 p-6 text-center font-mono text-slate-300">
+                {'>> No featured repositories available right now. Check back soon.'}
               </div>
-
-              {/* Phishing Detector Extension */}
-              <div className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl animate-rotate-3d">🔍</span>
-                  <h3 className="text-xl font-bold text-red-400 text-glow">
-                    PHISHING_DETECTOR
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 font-mono text-sm">
-                  ML Chrome extension • Random Forest on 10K+ URLs • Manifest V3 • Real-time URL classification
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Python', 'Chrome API', 'scikit-learn', 'ML'].map((tech) => (
-                    <span key={tech} className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a href="https://github.com/amanimran786/PhishingDetectorExtension" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-mono text-sm font-semibold transition-colors">
-                  {'>> VIEW_SOURCE'}
-                </a>
-              </div>
-            </div>
+            )}
 
             <div className="text-center mt-12">
               <Link
@@ -230,7 +220,7 @@ export default function Home() {
                 {'>> SEND_MESSAGE'}
               </a>
               <a
-                href="https://github.com/amanimran786"
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500"

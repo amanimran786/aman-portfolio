@@ -1,9 +1,9 @@
-'use client';
-
 import Link from 'next/link';
+import { getPortfolioData } from '@/lib/github';
 
-export default function Footer() {
+export default async function Footer() {
   const currentYear = new Date().getFullYear();
+  const { profile, githubUrl } = await getPortfolioData();
 
   return (
     <footer className="bg-slate-900 text-white mt-12">
@@ -11,9 +11,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Aman Imran</h3>
+            <h3 className="font-bold text-lg mb-4">{profile.name || 'Aman Imran'}</h3>
             <p className="text-slate-400 text-sm">
-              Full-stack developer passionate about building scalable applications and solving complex problems.
+              {profile.bio ||
+                'Full-stack and security-focused engineer building reliable, scalable products.'}
             </p>
           </div>
 
@@ -49,7 +50,7 @@ export default function Footer() {
               </a>
               <br />
               <a
-                href="https://github.com/amanimran786"
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-blue-400 transition-colors"
@@ -69,7 +70,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-700 pt-8">
           <p className="text-center text-slate-400 text-sm">
-            © {currentYear} Aman Imran. All rights reserved.
+            © {currentYear} {profile.name || 'Aman Imran'}. All rights reserved.
           </p>
         </div>
       </div>

@@ -152,7 +152,7 @@ export default function Skills() {
               {'< READY_TO_DEPLOY />'}
             </h2>
             <p className="text-lg text-red-100 mb-8 font-mono">
-              Let's build secure, innovative solutions together
+              Let&apos;s build secure, innovative solutions together
             </p>
             <a
               href="mailto:aman.imran@sjsu.edu"
