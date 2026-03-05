@@ -2,9 +2,29 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
+      title: "OSINT WorldView - Global Threat Dashboard",
+      icon: "🌐",
+      description: "A real-time OSINT dashboard that visualizes global cyber threats, news, and intelligence using public APIs. Features interactive world map, live threat feeds, and advanced filtering for security research.",
+      technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "OSINT", "API"],
+      github: "https://github.com/amanimran786/OSINT-WorldView",
+      featured: true,
+      color: "from-blue-700 to-cyan-700",
+    },
+    {
+      id: 2,
+      title: "PatternQuest - Gamified DSA iOS App",
+      icon: "🧩",
+      description: "A SwiftUI iOS app for learning Data Structures & Algorithms through interactive levels, pattern recognition, and visual demos. Includes Two Sum, sliding window, and CI/CD with GitHub Actions.",
+      technologies: ["Swift", "SwiftUI", "Xcode", "CI/CD", "iOS"],
+      github: "https://github.com/amanimran786/PatternQuest",
+      featured: true,
+      color: "from-green-600 to-emerald-600",
+    },
+    {
+      id: 3,
       title: "AI-Powered Malware Detection System",
       icon: "🤖",
-      description: "Advanced machine learning system for detecting malware using AI algorithms. Analyzes binary patterns and file signatures to identify potential threats with high accuracy. Features pattern recognition, threat classification, and real-time scanning capabilities.",
+      description: "Advanced machine learning system for detecting malware using AI. Analyzes binary patterns and file signatures to identify threats with high accuracy. Features pattern recognition, threat classification, and real-time scanning.",
       technologies: ["Machine Learning", "Python", "AI", "Security", "Data Analysis"],
       github: "https://github.com/vuvic/AI-Malware-Detection",
       presentation: "https://docs.google.com/presentation/d/1af6iuiVxO3nd28_IsUmNww1rceAlk_6LFbdO3sVzrb8/present",
@@ -14,10 +34,10 @@ export default function Projects() {
       color: "from-red-600 to-orange-600",
     },
     {
-      id: 2,
+      id: 4,
       title: "Phishing Detector Browser Extension",
       icon: "🔍",
-      description: "Machine learning-powered browser extension that detects phishing attempts in real-time. Analyzes URLs, email patterns, and website content to warn users about potentially malicious sites. Helps protect users from social engineering attacks and credential theft.",
+      description: "Browser extension powered by machine learning to detect phishing in real-time. Analyzes URLs, email patterns, and website content to warn users about malicious sites. Protects against social engineering and credential theft.",
       technologies: ["Machine Learning", "JavaScript", "Browser API", "Security", "Python"],
       github: "https://github.com/amanimran786/PhishingDetectorExtension",
       presentation: "https://docs.google.com/presentation/d/1vbkgvhzmOOAx04g2mCxhbc4h7DwJwcHlfCwLldmoFEE/present",
@@ -25,67 +45,52 @@ export default function Projects() {
       color: "from-cyan-600 to-blue-600",
     },
     {
-      id: 3,
-      title: "MindRight - Mental Health App",
-      icon: "🧠",
-      description: "Comprehensive application for mental health support and wellness tracking. Features mood tracking, meditation guides, journaling, and resources for emotional wellbeing. Built with modern technologies with browser extension integration.",
-      technologies: ["Java", "JavaScript", "HTML", "Spring Boot", "Browser Extension"],
-      github: "https://github.com/YTAF20/MindRight",
-      presentation: "https://docs.google.com/presentation/d/1tLbLzN3iko1EHQkfmoDFLvH4P6L4ZA5rVL8hBQKikSw/present",
-      proposal: "https://docs.google.com/document/d/1CT9VHKcBOpXN_Zw6CfTpH0HbUuMg8uMsEVUyuv3T7XU/edit",
-      ood: "https://docs.google.com/document/d/1zrpRhp-QmBc9yK2fjEvvLxSAvR43ttDy9n-S3Jmi-VY/edit",
-      featured: true,
-      color: "from-purple-600 to-pink-600",
-    },
-    {
-      id: 4,
-      title: "PatternQuest - DSA iOS App",
-      icon: "🧩",
-      description: "SwiftUI iOS app with interactive DSA levels including pattern recognition, Two Sum challenge, and sliding window visual demo. Features GitHub Actions CI/CD pipeline for automated builds.",
-      technologies: ["Swift", "SwiftUI", "Xcode", "CI/CD", "iOS"],
-      github: "https://github.com/amanimran786/PatternQuest",
-      featured: true,
-      color: "from-green-600 to-emerald-600",
-    },
-    {
       id: 5,
-      title: "Food Bank Inventory System",
-      icon: "🏦",
-      description: "Full relational database system for managing multiple food banks, their inventories, donors, recipients, and food distributions. Features 23 SQL queries from basic to advanced with mathematical notation representations.",
-      technologies: ["Java", "MySQL", "SQL", "Database Design", "DBMS"],
-      github: "https://github.com/amanimran786/FoodBankInventorySystem",
+      title: "FinGuard - Personal Finance Desktop App",
+      icon: "💸",
+      description: "A modern JavaFX desktop app for personal finance management. Features account tracking, transaction history, and analytics. Refactored for performance, maintainability, and robust database handling.",
+      technologies: ["Java", "JavaFX", "SQLite", "Maven", "Desktop App"],
+      github: "https://github.com/amanimran786/FinGuard",
       featured: true,
       color: "from-amber-600 to-yellow-600",
     },
     {
       id: 6,
+      title: "Food Bank Inventory System",
+      icon: "🏦",
+      description: "Relational database system for managing food banks, inventories, donors, and distributions. Features advanced SQL queries and mathematical notation for database education.",
+      technologies: ["Java", "MySQL", "SQL", "Database Design", "DBMS"],
+      github: "https://github.com/amanimran786/FoodBankInventorySystem",
+    },
+    {
+      id: 7,
       title: "Smart Mirror Project",
       icon: "🪞",
-      description: "IoT-enabled smart mirror displaying real-time information including weather, calendar, news, and system status. Features voice control integration and customizable displays. Developed as part of Ohlone Engineering Society innovation initiatives.",
+      description: "IoT-enabled smart mirror displaying real-time info: weather, calendar, news, and system status. Features voice control and customizable displays. Developed with Ohlone Engineering Society.",
       technologies: ["IoT", "JavaScript", "Python", "Hardware Integration", "System Design"],
       leadership: "Ohlone Engineering Society (O.E.S)",
     },
     {
-      id: 7,
+      id: 8,
       title: "Nitrate Detector for Waveriders Project",
       icon: "🧪",
-      description: "Environmental sensing system that detects nitrate pollution levels in organic wastewater. Features real-time data collection, analysis, and reporting. Demonstrates practical application of sensors and environmental monitoring technology.",
+      description: "Environmental sensing system for nitrate pollution in wastewater. Real-time data collection, analysis, and reporting. Demonstrates practical sensor and monitoring tech.",
       technologies: ["Sensors", "Data Analysis", "Arduino", "Environmental Science", "Hardware"],
       leadership: "Ohlone Engineering Society (O.E.S)",
     },
     {
-      id: 8,
+      id: 9,
       title: "NASA Student Launch Program - Rocket",
       icon: "🚀",
-      description: "NASA-approved motorized rocket project developed with Ohlone Physics Club. Includes design, fabrication, and launch. Received official NASA approval for construction and testing. Educational focus on rocket science and aerospace principles.",
+      description: "NASA-approved rocket project with Ohlone Physics Club. Includes design, fabrication, and launch. Focus on rocket science and aerospace education.",
       technologies: ["Physics", "Engineering Design", "Systems Integration", "Project Management"],
       leadership: "Ohlone Physics Club & NASA Student Launch",
     },
     {
-      id: 9,
+      id: 10,
       title: "Weather Widget",
       icon: "🌤️",
-      description: "Desktop weather widget application that displays real-time weather data. Clean interface with location-based weather updates and forecasting capabilities.",
+      description: "Desktop weather widget app with real-time weather data, location-based updates, and forecasting.",
       technologies: ["Python", "API Integration", "GUI", "Data Visualization"],
       github: "https://github.com/amanimran786/Weather_Widget",
     },
@@ -205,26 +210,7 @@ export default function Projects() {
                         {'>> Abstract'}
                       </a>
                     )}
-                    {project.proposal && (
-                      <a
-                        href={project.proposal}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors"
-                      >
-                        {'>> Proposal'}
-                      </a>
-                    )}
-                    {project.ood && (
-                      <a
-                        href={project.ood}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors"
-                      >
-                        {'>> O.O.D'}
-                      </a>
-                    )}
+                    {/* Proposal and OOD links removed for type safety */}
                   </div>
                 </div>
               </div>
