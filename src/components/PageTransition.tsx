@@ -12,46 +12,40 @@ const loadingLines = [
 ];
 
 export default function PageTransition() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window === 'undefined') {
+      return true;
+    }
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasShown = window.sessionStorage.getItem('portfolio_transition_shown') === '1';
+    return !(reducedMotion || hasShown);
+  });
   const [isFading, setIsFading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [visibleLines, setVisibleLines] = useState<number[]>([]);
+  const [isStarted, setIsStarted] = useState(false);
+  const [visibleLineCount, setVisibleLineCount] = useState(0);
 
   useEffect(() => {
-    // Reveal each line with its delay
-    const timers = loadingLines.map((line, idx) =>
-      setTimeout(() => setVisibleLines((prev) => [...prev, idx]), line.delay)
-    );
+    if (!isVisible) {
+      return;
+    }
 
-    // Animate progress bar from 0 → 100 over 2.5s
-    const start = Date.now();
-    const duration = 2500;
-    let raf: number;
-    const tick = () => {
-      const elapsed = Date.now() - start;
-      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(pct);
-      if (pct < 100) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-
-    // Start fade-out after all lines revealed + bar filled
+    window.sessionStorage.setItem('portfolio_transition_shown', '1');
+    const startTimer = setTimeout(() => setIsStarted(true), 0);
+    const lineTimer = setInterval(() => {
+      setVisibleLineCount((count) => Math.min(count + 1, loadingLines.length));
+    }, 400);
     const fadeTimer = setTimeout(() => setIsFading(true), 2800);
-    // Remove from DOM after fade completes
     const hideTimer = setTimeout(() => setIsVisible(false), 3600);
 
     return () => {
-      timers.forEach(clearTimeout);
+      clearTimeout(startTimer);
+      clearInterval(lineTimer);
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
-      cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isVisible]);
 
   if (!isVisible) return null;
-
-  const filled = Math.round((progress / 100) * 20);
-  const bar = '\u2588'.repeat(filled) + '\u2591'.repeat(20 - filled);
 
   return (
     <div
@@ -86,14 +80,14 @@ export default function PageTransition() {
               <div
                 key={idx}
                 className={`flex items-center gap-1 transition-all duration-300 ${
-                  visibleLines.includes(idx)
+                  idx < visibleLineCount
                     ? 'opacity-100 translate-x-0'
                     : 'opacity-0 -translate-x-4'
                 }`}
               >
                 <span className="text-green-400">&gt;</span>
                 <span className="text-red-400">{line.text}</span>
-                {line.ok && visibleLines.includes(idx) && (
+                {line.ok && idx < visibleLineCount && (
                   <span className="text-green-400 font-bold ml-1">[OK]</span>
                 )}
               </div>
@@ -105,14 +99,13 @@ export default function PageTransition() {
             <div className="bg-slate-900 border border-red-500/40 h-2.5 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400 rounded-full transition-[width] duration-100 ease-linear shadow-[0_0_8px_rgba(239,68,68,0.6)]"
-                style={{ width: `${progress}%` }}
+                style={{ width: isStarted ? '100%' : '0%', transitionDuration: '2500ms' }}
               />
             </div>
 
             {/* ASCII bar + percentage */}
-            <div className="flex items-center justify-between mt-2 text-xs font-mono text-red-300">
-              <span>[{bar}]</span>
-              <span className="tabular-nums">{progress}%</span>
+            <div className="mt-2 text-xs font-mono text-red-300">
+              <span>{isStarted ? '[████████████████████] 100%' : '[░░░░░░░░░░░░░░░░░░░░] 0%'}</span>
             </div>
           </div>
         </div>

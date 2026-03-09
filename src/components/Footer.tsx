@@ -1,9 +1,13 @@
 import Link from 'next/link';
-import { getPortfolioData } from '@/lib/github';
 
-export default async function Footer() {
+const DEFAULT_GITHUB_USERNAME = 'amanimran786';
+
+export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const { profile, githubUrl } = await getPortfolioData();
+  const githubUsername = process.env.GITHUB_USERNAME || DEFAULT_GITHUB_USERNAME;
+  const githubUrl = `https://github.com/${githubUsername}`;
+  const displayName = 'Aman Imran';
+  const shortBio = 'Full-stack and security-focused engineer building reliable, scalable products.';
 
   return (
     <footer className="bg-slate-900 text-white mt-12">
@@ -11,11 +15,8 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="font-bold text-lg mb-4">{profile.name || 'Aman Imran'}</h3>
-            <p className="text-slate-400 text-sm">
-              {profile.bio ||
-                'Full-stack and security-focused engineer building reliable, scalable products.'}
-            </p>
+            <h3 className="font-bold text-lg mb-4">{displayName}</h3>
+            <p className="text-slate-400 text-sm">{shortBio}</p>
           </div>
 
           {/* Quick Links */}
@@ -70,7 +71,7 @@ export default async function Footer() {
 
         <div className="border-t border-slate-700 pt-8">
           <p className="text-center text-slate-400 text-sm">
-            © {currentYear} {profile.name || 'Aman Imran'}. All rights reserved.
+            © {currentYear} {displayName}. All rights reserved.
           </p>
         </div>
       </div>
