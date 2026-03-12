@@ -14,7 +14,7 @@ const FEATURED_REPO_NAMES = [
   'FoodBankInventorySystem',
 ];
 const WORLDVIEW_REPO_KEYWORDS = ['worldview'];
-const REDIRECT_TO_AI_MALWARE_REPOS = new Set(['aman-portfolio', 'vulvic']);
+const REDIRECT_TO_AI_MALWARE_REPOS = new Set(['aman-portfolio', 'vulvic', 'amanimran786']);
 
 const PROJECT_COLORS = [
   'from-blue-700 to-cyan-700',
