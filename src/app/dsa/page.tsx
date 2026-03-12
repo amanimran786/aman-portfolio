@@ -111,6 +111,7 @@ const dailyMissions = [
     tasks: ["Review yesterday’s notes", "Flash 5 spaced cards", "Commit solutions repo"],
   },
 ];
+const PRIMARY_REPO_URL = "https://github.com/amanimran786/AI-Malware-Detection";
 
 export default function DsaLab() {
   const [cleared, setCleared] = useState<Record<string, boolean>>({});
@@ -335,7 +336,7 @@ export default function DsaLab() {
                 </ul>
               </div>
               <Link
-                href="https://github.com/amanimran786"
+                href={PRIMARY_REPO_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-red-700 font-semibold px-5 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all"

@@ -5,14 +5,16 @@ const DEFAULT_GITHUB_USERNAME = 'amanimran786';
 const GITHUB_API_BASE = 'https://api.github.com';
 const REVALIDATE_SECONDS = 3600;
 const ADDITIONAL_REPO_LIMIT = 6;
+const AI_MALWARE_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
 const FEATURED_REPO_NAMES = [
-  'OSINT-WorldView',
   'PatternQuest',
   'AI-Malware-Detection',
   'PhishingDetectorExtension',
   'FinGuard',
   'FoodBankInventorySystem',
 ];
+const WORLDVIEW_REPO_KEYWORDS = ['worldview'];
+const REDIRECT_TO_AI_MALWARE_REPOS = new Set(['aman-portfolio', 'vulvic']);
 
 const PROJECT_COLORS = [
   'from-blue-700 to-cyan-700',
@@ -95,7 +97,20 @@ function pickIcon(repo: GithubRepo, featured: boolean): string {
   return '⚡';
 }
 
+function pickLatestWorldViewRepo(repos: GithubRepo[]): GithubRepo | null {
+  const matches = repos
+    .filter((repo) => {
+      const name = repo.name.toLowerCase();
+      return WORLDVIEW_REPO_KEYWORDS.some((keyword) => name.includes(keyword));
+    })
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+
+  return matches[0] ?? null;
+}
+
 function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number): PortfolioProject {
+  const shouldRedirectLinks = REDIRECT_TO_AI_MALWARE_REPOS.has(repo.name.toLowerCase());
+
   return {
     id: repo.id,
     repoName: repo.name,
@@ -104,8 +119,8 @@ function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number):
     icon: pickIcon(repo, featured),
     color: PROJECT_COLORS[index % PROJECT_COLORS.length],
     technologies: uniqueTechnologies(repo),
-    githubUrl: repo.html_url,
-    homepageUrl: repo.homepage || null,
+    githubUrl: shouldRedirectLinks ? AI_MALWARE_REPO_URL : repo.html_url,
+    homepageUrl: shouldRedirectLinks ? AI_MALWARE_REPO_URL : repo.homepage || null,
     stars: repo.stargazers_count,
     forks: repo.forks_count,
     updatedAt: repo.updated_at,
@@ -175,14 +190,18 @@ export const getPortfolioData = cache(async (): Promise<PortfolioData> => {
 
     const visibleRepos = repos.filter((repo) => !repo.fork && !repo.archived);
     const repoMap = new Map(visibleRepos.map((repo) => [repo.name.toLowerCase(), repo]));
+    const latestWorldViewRepo = pickLatestWorldViewRepo(visibleRepos);
 
-    const featuredProjects = FEATURED_REPO_NAMES.map((repoName, index) => {
+    const featuredProjects = [
+      latestWorldViewRepo ? toPortfolioProject(latestWorldViewRepo, true, 0) : null,
+      ...FEATURED_REPO_NAMES.map((repoName, index) => {
       const repo = repoMap.get(repoName.toLowerCase());
       if (!repo) {
         return null;
       }
-      return toPortfolioProject(repo, true, index);
-    }).filter((repo): repo is PortfolioProject => repo !== null);
+      return toPortfolioProject(repo, true, index + 1);
+    }),
+    ].filter((repo): repo is PortfolioProject => repo !== null);
 
     const featuredNames = new Set(featuredProjects.map((repo) => repo.repoName.toLowerCase()));
     const otherProjects = visibleRepos

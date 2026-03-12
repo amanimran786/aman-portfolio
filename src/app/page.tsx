@@ -2,6 +2,8 @@ import Link from 'next/link';
 import AnimatedButton from '@/components/AnimatedButton';
 import { getPortfolioData } from '@/lib/github';
 
+const PRIMARY_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
+
 function buildHeroLine(bio: string | null, company: string | null, location: string | null): string {
   const defaultLine =
     'SJSU Software Engineering grad. Building secure, innovative, and scalable apps in Python, TypeScript, Swift, and Java.';
@@ -25,7 +27,7 @@ function buildHeroLine(bio: string | null, company: string | null, location: str
 }
 
 export default async function Home() {
-  const { profile, featuredProjects, githubUrl, isFallback, fallbackReason } = await getPortfolioData();
+  const { profile, featuredProjects, isFallback, fallbackReason } = await getPortfolioData();
   const heroLine = buildHeroLine(profile.bio, profile.company, profile.location);
   const homeFeatured = featuredProjects.slice(0, 4);
 
@@ -220,7 +222,7 @@ export default async function Home() {
                 {'>> SEND_MESSAGE'}
               </a>
               <a
-                href={githubUrl}
+                href={PRIMARY_REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500"

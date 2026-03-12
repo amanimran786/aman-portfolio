@@ -1,11 +1,10 @@
 import Link from 'next/link';
 
-const DEFAULT_GITHUB_USERNAME = 'amanimran786';
+const PRIMARY_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const githubUsername = process.env.GITHUB_USERNAME || DEFAULT_GITHUB_USERNAME;
-  const githubUrl = `https://github.com/${githubUsername}`;
+  const githubUrl = PRIMARY_REPO_URL;
   const displayName = 'Aman Imran';
   const shortBio = 'Full-stack and security-focused engineer building reliable, scalable products.';
 
