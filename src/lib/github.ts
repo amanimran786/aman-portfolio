@@ -1,11 +1,11 @@
 import { cache } from 'react';
 import type { GithubRepo, GithubUser, PortfolioData, PortfolioProject } from '@/types/github';
+import { PORTFOLIO_SITE_URL } from '@/lib/links';
 
 const DEFAULT_GITHUB_USERNAME = 'amanimran786';
 const GITHUB_API_BASE = 'https://api.github.com';
 const REVALIDATE_SECONDS = 3600;
 const ADDITIONAL_REPO_LIMIT = 6;
-const AI_MALWARE_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
 const FEATURED_REPO_NAMES = [
   'PatternQuest',
   'AI-Malware-Detection',
@@ -14,7 +14,7 @@ const FEATURED_REPO_NAMES = [
   'FoodBankInventorySystem',
 ];
 const WORLDVIEW_REPO_KEYWORDS = ['worldview'];
-const REDIRECT_TO_AI_MALWARE_REPOS = new Set(['aman-portfolio', 'vulvic', 'amanimran786']);
+const PORTFOLIO_REPO_NAMES = new Set(['aman-portfolio']);
 
 const PROJECT_COLORS = [
   'from-blue-700 to-cyan-700',
@@ -109,7 +109,7 @@ function pickLatestWorldViewRepo(repos: GithubRepo[]): GithubRepo | null {
 }
 
 function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number): PortfolioProject {
-  const shouldRedirectLinks = REDIRECT_TO_AI_MALWARE_REPOS.has(repo.name.toLowerCase());
+  const isPortfolioRepo = PORTFOLIO_REPO_NAMES.has(repo.name.toLowerCase());
 
   return {
     id: repo.id,
@@ -119,8 +119,8 @@ function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number):
     icon: pickIcon(repo, featured),
     color: PROJECT_COLORS[index % PROJECT_COLORS.length],
     technologies: uniqueTechnologies(repo),
-    githubUrl: shouldRedirectLinks ? AI_MALWARE_REPO_URL : repo.html_url,
-    homepageUrl: shouldRedirectLinks ? AI_MALWARE_REPO_URL : repo.homepage || null,
+    githubUrl: repo.html_url,
+    homepageUrl: isPortfolioRepo ? PORTFOLIO_SITE_URL : repo.homepage || null,
     stars: repo.stargazers_count,
     forks: repo.forks_count,
     updatedAt: repo.updated_at,

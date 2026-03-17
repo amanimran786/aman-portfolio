@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import AnimatedButton from '@/components/AnimatedButton';
 import { getPortfolioData } from '@/lib/github';
-
-const PRIMARY_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
+import { GITHUB_PROFILE_URL } from '@/lib/links';
 
 function buildHeroLine(bio: string | null, company: string | null, location: string | null): string {
   const defaultLine =
@@ -222,7 +221,7 @@ export default async function Home() {
                 {'>> SEND_MESSAGE'}
               </a>
               <a
-                href={PRIMARY_REPO_URL}
+                href={GITHUB_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500"

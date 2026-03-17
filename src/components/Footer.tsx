@@ -1,10 +1,9 @@
 import Link from 'next/link';
-
-const PRIMARY_REPO_URL = 'https://github.com/amanimran786/AI-Malware-Detection';
+import { GITHUB_PROFILE_URL } from '@/lib/links';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const githubUrl = PRIMARY_REPO_URL;
+  const githubUrl = GITHUB_PROFILE_URL;
   const displayName = 'Aman Imran';
   const shortBio = 'Full-stack and security-focused engineer building reliable, scalable products.';
 
