@@ -7,7 +7,7 @@ const GITHUB_API_BASE = 'https://api.github.com';
 const REVALIDATE_SECONDS = 3600;
 const ADDITIONAL_REPO_LIMIT = 6;
 const FEATURED_REPO_NAMES = [
-  'PatternQuest',
+  'jarvis-ai',
   'AI-Malware-Detection',
   'PhishingDetectorExtension',
   'FinGuard',
