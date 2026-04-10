@@ -35,6 +35,12 @@ export default async function Home() {
       {/* Animated Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
+        
+        {/* Floating Particles/Nodes */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-floating-particle"></div>
+        <div className="absolute top-40 right-20 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-red-500 rounded-full animate-floating-particle" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-40 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '1.5s'}}></div>
       </div>
 
       <div className="relative z-10">
@@ -43,7 +49,7 @@ export default async function Home() {
           <div className="text-center">
             {/* Animated Badge */}
             <div className="mb-6 inline-block">
-              <span className="inline-block bg-red-900/30 text-red-400 px-4 py-2 rounded-full text-sm font-semibold border border-red-500/50 animate-pulse-border">
+              <span className="inline-block bg-red-900/30 text-red-400 px-4 py-2 rounded-full text-sm font-semibold border border-red-500/50 animate-pulse-border animate-neo-pulse">
                 🔐 SECURITY_ENGINEER [ACTIVE]
               </span>
             </div>
@@ -78,13 +84,14 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Matrix Rain Background */}
+        {/* Enhanced Matrix Rain Background */}
         <div className="absolute right-0 top-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute left-0 bottom-0 w-96 h-96 bg-red-600/3 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
 
         {/* Featured Section - Sci-Fi Theme */}
         <section className="bg-gradient-to-b from-slate-900/50 to-slate-800/50 py-16 backdrop-blur-sm border-y border-red-500/20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
               ⚡ ELITE_SECURITY_PROJECTS
             </h2>
 
@@ -96,10 +103,11 @@ export default async function Home() {
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {homeFeatured.map((project) => (
+              {homeFeatured.map((project, idx) => (
                 <div
                   key={project.id}
-                  className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30"
+                  className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30 animate-hologram-flicker"
+                  style={{animationDelay: `${idx * 0.2}s`}}
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl animate-float">{project.icon}</span>
@@ -112,7 +120,7 @@ export default async function Home() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono"
+                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
                       >
                         {tech}
                       </span>
@@ -123,7 +131,7 @@ export default async function Home() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-semibold transition-colors"
+                      className="text-red-400 hover:text-red-300 font-semibold transition-colors hover:animate-cyber-glow"
                     >
                       {'>> VIEW_SOURCE'}
                     </a>
@@ -132,7 +140,7 @@ export default async function Home() {
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-semibold transition-colors"
+                        className="text-red-400 hover:text-red-300 font-semibold transition-colors hover:animate-cyber-glow"
                       >
                         {'>> LIVE_DEMO'}
                       </a>
@@ -151,7 +159,7 @@ export default async function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/projects"
-                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 font-mono neon-border-glow transform hover:scale-105"
+                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 font-mono neon-border-glow transform hover:scale-105 hover:animate-neo-pulse"
               >
                 {'>>> LOAD_ALL_PROJECTS'}
               </Link>
@@ -161,7 +169,7 @@ export default async function Home() {
 
         {/* Skills Section - Glowing Cards */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
             🔧 SYSTEM_CAPABILITIES
           </h2>
 
@@ -182,7 +190,7 @@ export default async function Home() {
             ].map((category, idx) => (
               <div
                 key={idx}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 neon-border border border-red-500/30 transform hover:scale-105 transition-all duration-300 hover:shadow-red-600/30"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 neon-border border border-red-500/30 transform hover:scale-105 transition-all duration-300 hover:shadow-red-600/30 hover:animate-neo-pulse"
               >
                 <h3 className="text-xl font-bold text-red-400 mb-4 font-mono text-glow">
                   {`[${category.title}]`}
@@ -207,7 +215,7 @@ export default async function Home() {
           </div>
 
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl font-bold mb-4 text-glow-lg font-mono">
+            <h2 className="text-3xl font-bold mb-4 text-glow-lg font-mono animate-cyber-glow">
               {'< SECURITY_FIRST_DEVELOPMENT />'}
             </h2>
             <p className="text-lg mb-8 text-red-100 font-mono">
@@ -216,7 +224,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:aman.imran@sjsu.edu"
-                className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all duration-300 transform hover:scale-105 font-mono neon-border-glow"
+                className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all duration-300 transform hover:scale-105 font-mono neon-border-glow hover:animate-neo-pulse"
               >
                 {'>> SEND_MESSAGE'}
               </a>
@@ -224,7 +232,7 @@ export default async function Home() {
                 href={GITHUB_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500"
+                className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500 hover:animate-neo-pulse"
               >
                 {'>> VIEW_GITHUB'}
               </a>

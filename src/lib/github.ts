@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import type { GithubRepo, GithubUser, PortfolioData, PortfolioProject } from '@/types/github';
-import { PORTFOLIO_SITE_URL } from '@/lib/links';
+import { PORTFOLIO_SITE_URL, PROJECT_URLS } from '@/lib/links';
 
 const DEFAULT_GITHUB_USERNAME = 'amanimran786';
 const GITHUB_API_BASE = 'https://api.github.com';
@@ -110,6 +110,7 @@ function pickLatestWorldViewRepo(repos: GithubRepo[]): GithubRepo | null {
 
 function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number): PortfolioProject {
   const isPortfolioRepo = PORTFOLIO_REPO_NAMES.has(repo.name.toLowerCase());
+  const repoKey = repo.name.toLowerCase().replace(/[-_]/g, '-');
 
   return {
     id: repo.id,
@@ -120,7 +121,7 @@ function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number):
     color: PROJECT_COLORS[index % PROJECT_COLORS.length],
     technologies: uniqueTechnologies(repo),
     githubUrl: repo.html_url,
-    homepageUrl: isPortfolioRepo ? PORTFOLIO_SITE_URL : repo.homepage || null,
+    homepageUrl: isPortfolioRepo ? PORTFOLIO_SITE_URL : (PROJECT_URLS[repoKey] || repo.homepage || null),
     stars: repo.stargazers_count,
     forks: repo.forks_count,
     updatedAt: repo.updated_at,

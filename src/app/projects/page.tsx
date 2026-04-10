@@ -16,6 +16,11 @@ export default async function Projects() {
       {/* Animated Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
+        
+        {/* Floating Particles/Nodes */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-floating-particle"></div>
+        <div className="absolute top-40 right-20 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-40 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '1.5s'}}></div>
       </div>
 
       <div className="relative z-10">
@@ -42,18 +47,19 @@ export default async function Projects() {
 
         {/* Featured Projects */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
             🔥 Featured Security &amp; AI Projects
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {featuredProjects.map((project) => (
+            {featuredProjects.map((project, idx) => (
               <div
                 key={project.id}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-red-600/30 transition-all neon-border border border-red-500/30 transform hover:scale-105"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-red-600/30 transition-all neon-border border border-red-500/30 transform hover:scale-105 animate-hologram-flicker"
+                style={{animationDelay: `${idx * 0.2}s`}}
               >
                 <div
-                  className={`h-48 bg-gradient-to-br ${project.color} relative flex items-center justify-center overflow-hidden`}
+                  className={`h-48 bg-gradient-to-br ${project.color} relative flex items-center justify-center overflow-hidden hover:animate-neo-pulse`}
                 >
                   <div
                     className="absolute inset-0 opacity-20"
@@ -86,7 +92,7 @@ export default async function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded-full text-sm font-mono"
+                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded-full text-sm font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
                       >
                         {tech}
                       </span>
@@ -108,7 +114,7 @@ export default async function Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors"
+                      className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors hover:animate-cyber-glow"
                     >
                       {'>> GitHub'}
                     </a>
@@ -117,7 +123,7 @@ export default async function Projects() {
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors"
+                        className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors hover:animate-cyber-glow"
                       >
                         {'>> Live Demo'}
                       </a>
@@ -135,17 +141,18 @@ export default async function Projects() {
           )}
 
           {/* Other Projects */}
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
             ⚡ Other Notable Projects
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project) => (
+            {otherProjects.map((project, idx) => (
               <div
                 key={project.id}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden neon-border border border-red-500/30 hover:shadow-xl hover:shadow-red-600/30 transition-all transform hover:scale-105"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden neon-border border border-red-500/30 hover:shadow-xl hover:shadow-red-600/30 transition-all transform hover:scale-105 animate-hologram-flicker"
+                style={{animationDelay: `${idx * 0.15}s`}}
               >
-                <div className="h-24 bg-gradient-to-br from-slate-700 to-slate-800 relative flex items-center justify-center overflow-hidden">
+                <div className="h-24 bg-gradient-to-br from-slate-700 to-slate-800 relative flex items-center justify-center overflow-hidden hover:animate-neo-pulse">
                   <div
                     className="absolute inset-0 opacity-10"
                     style={{
@@ -169,7 +176,7 @@ export default async function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-2 py-1 rounded text-xs font-mono"
+                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-2 py-1 rounded text-xs font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
                       >
                         {tech}
                       </span>
@@ -188,7 +195,7 @@ export default async function Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors"
+                      className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors hover:animate-cyber-glow"
                     >
                       {'>> GitHub'}
                     </a>
@@ -197,7 +204,7 @@ export default async function Projects() {
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors"
+                        className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors hover:animate-cyber-glow"
                       >
                         {'>> Live Demo'}
                       </a>
