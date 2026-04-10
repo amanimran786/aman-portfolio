@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import type { GithubRepo, GithubUser, PortfolioData, PortfolioProject } from '@/types/github';
 import { PORTFOLIO_SITE_URL, PROJECT_URLS } from '@/lib/links';
+import { getProjectMetadata } from '@/lib/projectMetadata';
 
 const DEFAULT_GITHUB_USERNAME = 'amanimran786';
 const GITHUB_API_BASE = 'https://api.github.com';
@@ -15,29 +16,6 @@ const FEATURED_REPO_NAMES = [
 ];
 const WORLDVIEW_REPO_KEYWORDS = ['worldview'];
 const PORTFOLIO_REPO_NAMES = new Set(['aman-portfolio']);
-
-const PROJECT_COLORS = [
-  'from-blue-700 to-cyan-700',
-  'from-green-600 to-emerald-600',
-  'from-red-600 to-orange-600',
-  'from-cyan-600 to-blue-600',
-  'from-amber-600 to-yellow-600',
-  'from-violet-700 to-fuchsia-700',
-  'from-teal-700 to-emerald-700',
-];
-
-const LANGUAGE_ICONS: Record<string, string> = {
-  TypeScript: '🟦',
-  JavaScript: '🟨',
-  Python: '🐍',
-  Java: '☕',
-  Swift: '📱',
-  Kotlin: '🤖',
-  'C++': '⚙️',
-  HTML: '🌐',
-  CSS: '🎨',
-  Shell: '🖥️',
-};
 
 declare global {
   var __portfolioLastSuccess: PortfolioData | undefined;
@@ -85,18 +63,6 @@ function uniqueTechnologies(repo: GithubRepo): string[] {
   return Array.from(techSet).slice(0, 6);
 }
 
-function pickIcon(repo: GithubRepo, featured: boolean): string {
-  if (LANGUAGE_ICONS[repo.language ?? '']) {
-    return LANGUAGE_ICONS[repo.language ?? ''];
-  }
-
-  if (featured) {
-    return '🔥';
-  }
-
-  return '⚡';
-}
-
 function pickLatestWorldViewRepo(repos: GithubRepo[]): GithubRepo | null {
   const matches = repos
     .filter((repo) => {
@@ -108,17 +74,18 @@ function pickLatestWorldViewRepo(repos: GithubRepo[]): GithubRepo | null {
   return matches[0] ?? null;
 }
 
-function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number): PortfolioProject {
+function toPortfolioProject(repo: GithubRepo, featured: boolean): PortfolioProject {
   const isPortfolioRepo = PORTFOLIO_REPO_NAMES.has(repo.name.toLowerCase());
   const repoKey = repo.name.toLowerCase().replace(/[-_]/g, '-');
+  const metadata = getProjectMetadata(repo.name);
 
   return {
     id: repo.id,
     repoName: repo.name,
-    title: prettifyRepoName(repo.name),
-    description: formatRepoDescription(repo),
-    icon: pickIcon(repo, featured),
-    color: PROJECT_COLORS[index % PROJECT_COLORS.length],
+    title: metadata.displayName || prettifyRepoName(repo.name),
+    description: metadata.longDescription || formatRepoDescription(repo),
+    icon: metadata.emoji,
+    color: metadata.primaryGradient,
     technologies: uniqueTechnologies(repo),
     githubUrl: repo.html_url,
     homepageUrl: isPortfolioRepo ? PORTFOLIO_SITE_URL : (PROJECT_URLS[repoKey] || repo.homepage || null),
@@ -126,6 +93,13 @@ function toPortfolioProject(repo: GithubRepo, featured: boolean, index: number):
     forks: repo.forks_count,
     updatedAt: repo.updated_at,
     featured,
+    metadata: {
+      displayName: metadata.displayName,
+      shortDescription: metadata.shortDescription,
+      category: metadata.category,
+      keyFeatures: metadata.keyFeatures,
+      impact: metadata.impact,
+    },
   };
 }
 

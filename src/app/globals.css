@@ -89,6 +89,33 @@ body {
   }
 }
 
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes card-elevation {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes soft-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5), 0 0 50px rgba(59, 130, 246, 0.3);
+  }
+}
+
 @keyframes glow-pulse {
   0%, 100% {
     box-shadow: 0 0 5px rgba(239, 68, 68, 0.5), inset 0 0 5px rgba(239, 68, 68, 0.1);
@@ -190,6 +217,19 @@ body {
 
 .animate-circuit-trace {
   animation: circuit-trace 2s ease-in-out forwards;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.animate-card-elevation {
+  animation: card-elevation 3s ease-in-out infinite;
+}
+
+.animate-soft-glow-pulse {
+  animation: soft-glow-pulse 2s ease-in-out infinite;
 }
 
 .animate-glow-pulse {

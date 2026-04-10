@@ -39,6 +39,13 @@ export interface PortfolioProject {
   forks: number;
   updatedAt: string;
   featured: boolean;
+  metadata?: {
+    displayName: string;
+    shortDescription: string;
+    category: string;
+    keyFeatures: string[];
+    impact: string;
+  };
 }
 
 export interface PortfolioData {
