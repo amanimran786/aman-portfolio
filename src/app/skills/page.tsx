@@ -1,168 +1,109 @@
+import ScrollReveal from '@/components/ScrollReveal';
+
 export default function Skills() {
   const skillCategories = [
     {
-      category: "🔒 Security & Cybersecurity",
-      skills: [
-        "OWASP Top 10",
-        "Secure Coding",
-        "Authentication & Authorization",
-        "Encryption & Hashing",
-        "Security Testing",
-        "Penetration Testing",
-        "Threat Analysis",
-        "Binary Analysis",
-      ],
+      category: "AI Safety Operations",
+      icon: "🔒",
+      skills: ["AI misuse", "Jailbreak review", "Prompt injection", "Policy evasion", "Classifier tradeoffs", "Precision/recall", "Incident analysis", "Calibration"],
     },
     {
-      category: "🤖 AI & Machine Learning",
-      skills: [
-        "Machine Learning",
-        "AI Algorithms",
-        "Neural Networks",
-        "Data Analysis",
-        "Pattern Recognition",
-        "Model Training",
-        "Threat Detection",
-      ],
+      category: "Trust & Safety",
+      icon: "🤖",
+      skills: ["Fraud", "Account abuse", "Coordinated behavior", "Policy interpretation", "Enforcement gaps", "Root cause analysis", "Risk triage"],
     },
     {
-      category: "📱 Mobile Development",
-      skills: [
-        "SwiftUI",
-        "Kotlin",
-        "Android Studio",
-        "Xcode",
-        "Mobile UI/UX",
-        "iOS Development",
-        "Android Development",
-      ],
+      category: "SQL & Analytics",
+      icon: "📊",
+      skills: ["CTEs", "Window functions", "Cohort analysis", "Anomaly detection", "Query optimization", "Measurement design", "Signal QA"],
     },
     {
-      category: "💻 Programming Languages",
-      skills: [
-        "Java",
-        "JavaScript",
-        "Python",
-        "C++",
-        "TypeScript",
-        "HTML/CSS",
-        "Swift",
-        "Kotlin",
-      ],
+      category: "Python Workflows",
+      icon: "🐍",
+      skills: ["Automation", "Data enrichment", "Signal pipelines", "Model evaluation", "scikit-learn", "Pandas", "Threat analysis"],
     },
     {
-      category: "🛠️ Development Tools",
-      skills: [
-        "GitHub",
-        "Git",
-        "IntelliJ",
-        "Android Studio",
-        "Xcode",
-        "VS Code",
-        "Slack",
-        "Microsoft Office",
-        "GSuite",
-      ],
+      category: "Software Engineering",
+      icon: "🛠️",
+      skills: ["TypeScript", "Next.js", "React", "Swift", "Java", "FastAPI", "Git", "Tailwind"],
     },
     {
-      category: "📊 Data & Databases",
-      skills: [
-        "SQL",
-        "Database Management",
-        "Tableau",
-        "Data Structures",
-        "Data Analysis",
-        "DBMS",
-        "Query Optimization",
-      ],
+      category: "Local-First AI",
+      icon: "⚙️",
+      skills: ["macOS automation", "Private workflows", "Tool orchestration", "Context handling", "Operator control", "No cloud fallback"],
     },
     {
-      category: "🏗️ Software Architecture",
-      skills: [
-        "System Design",
-        "Architecture Patterns",
-        "Scalability",
-        "Database Design",
-        "API Design",
-        "Microservices",
-      ],
+      category: "Detection Projects",
+      icon: "🛡️",
+      skills: ["Malware signals", "Phishing cues", "Abuse patterns", "Feature engineering", "Risk scoring", "User warnings"],
     },
     {
-      category: "🎓 Professional Skills",
-      skills: [
-        "Problem Solving",
-        "Communication",
-        "Organization",
-        "Collaboration",
-        "Integrity",
-        "Leadership",
-        "Project Management",
-      ],
+      category: "Execution",
+      icon: "🎓",
+      skills: ["High ownership", "Cross-functional work", "Clear escalation", "Decision logs", "Operational rigor", "Systems thinking"],
     },
   ];
 
   return (
-    <div className="cyber-grid">
-      {/* Animated Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
-      </div>
-
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-5xl font-bold text-white mb-4 text-glow-lg">
-            🔧 System Capabilities
+    <div>
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <ScrollReveal>
+          <div className="h-[3px] w-24 arctic-gradient rounded-full mb-6" />
+          <h1 className="text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+            Skills & Expertise
           </h1>
-          <p className="text-lg text-slate-300 font-mono">
-            Technical expertise and professional capabilities across security, AI, and full-stack development
+          <p className="text-lg text-slate-400">
+            Safety operations depth backed by SQL, Python, and product-minded engineering
           </p>
-        </section>
+        </ScrollReveal>
+      </section>
 
-        {/* Skills Grid */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 neon-border border border-red-500/30 hover:shadow-xl hover:shadow-red-600/30 transition-all transform hover:scale-105"
-              >
-                <h2 className="text-lg font-bold text-red-400 mb-4 text-glow">
+      {/* Skills Grid */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillCategories.map((category, index) => (
+            <ScrollReveal key={index} delay={index * 0.08}>
+              <div className="glass-card p-6 h-full">
+                <div className="text-3xl mb-3 animate-gentle-float" style={{ animationDelay: `${index * 0.3}s` }}>
+                  {category.icon}
+                </div>
+                <h2 className="text-base font-bold text-slate-900 mb-4">
                   {category.category}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono hover:bg-red-900/50 transition-colors animate-pulse"
-                    >
+                    <span key={skillIndex} className="skill-tag">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-        {/* Contact CTA */}
-        <section className="bg-gradient-to-r from-red-950/80 to-red-900/80 backdrop-blur-sm text-white py-16 border-t border-red-500/30">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-glow-lg font-mono mb-4">
-              {'< READY_TO_DEPLOY />'}
+      {/* CTA */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-500 bg-[length:200%_100%] animate-[gradient-flow_6s_ease_infinite]" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl font-extrabold text-white mb-4">
+              Detection-minded. Operator-tested.
             </h2>
-            <p className="text-lg text-red-100 mb-8 font-mono">
-              Let&apos;s build secure, innovative solutions together
+            <p className="text-lg text-sky-100 mb-8">
+              I build the tools I wish safety teams had during live investigations.
             </p>
             <a
               href="mailto:aman.imran@sjsu.edu"
-              className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all transform hover:scale-105 font-mono neon-border-glow"
+              className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all transform hover:scale-105 shadow-lg"
             >
-              {'>> SEND_MESSAGE'}
+              Get In Touch
             </a>
-          </div>
-        </section>
-      </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </div>
   );
 }

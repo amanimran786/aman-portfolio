@@ -1,4 +1,5 @@
 import { getPortfolioData } from '@/lib/github';
+import ScrollReveal from '@/components/ScrollReveal';
 
 function formatUpdatedDate(updatedAt: string): string {
   return new Date(updatedAt).toLocaleDateString('en-US', {
@@ -12,234 +13,216 @@ export default async function Projects() {
   const { featuredProjects, otherProjects, isFallback, fallbackReason } = await getPortfolioData();
 
   return (
-    <div className="cyber-grid">
-      {/* Animated Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
-        
-        {/* Floating Particles/Nodes */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-floating-particle"></div>
-        <div className="absolute top-40 right-20 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute bottom-40 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '1.5s'}}></div>
-      </div>
-
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-glow-lg">
+    <div>
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="h-[3px] w-24 arctic-gradient rounded-full mb-6" />
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
               My Projects
             </h1>
-            <p className="text-lg text-slate-300 font-mono">
-              Live repository intelligence synced from GitHub
+            <p className="text-lg text-slate-400">
+              Safety, automation, and data projects pulled from live GitHub repositories
             </p>
-          </div>
-        </section>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-          {isFallback && (
-            <div className="rounded-lg border border-red-500/40 bg-red-950/30 p-4 text-sm font-mono text-red-200">
-              {'>> FALLBACK_MODE: '}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        {isFallback && (
+          <ScrollReveal>
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
               {fallbackReason || 'Displaying last successful GitHub snapshot.'}
             </div>
-          )}
-        </section>
+          </ScrollReveal>
+        )}
+      </section>
 
-        {/* Featured Projects */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
-            🔥 Featured Security &amp; AI Projects
-          </h2>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <ScrollReveal>
+          <div className="mb-12">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-2 text-center tracking-tight">
+              Featured Projects
+            </h2>
+            <p className="text-center text-slate-400 text-sm">
+              Core builds across AI automation, detection, and operational tooling
+            </p>
+          </div>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {featuredProjects.map((project, idx) => (
-              <div
-                key={project.id}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-red-600/30 transition-all neon-border border border-red-500/30 transform hover:scale-105 animate-hologram-flicker"
-                style={{animationDelay: `${idx * 0.2}s`}}
-              >
-                <div
-                  className={`h-48 bg-gradient-to-br ${project.color} relative flex items-center justify-center overflow-hidden hover:animate-neo-pulse`}
-                >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {featuredProjects.map((project, idx) => (
+            <ScrollReveal key={project.id} delay={idx * 0.1}>
+              <article className="glass-card overflow-hidden h-full">
+                <div className={`relative h-48 bg-gradient-to-br ${project.color} flex items-center justify-center overflow-hidden`}>
                   <div
-                    className="absolute inset-0 opacity-20"
+                    className="absolute inset-0 opacity-15"
                     style={{
                       backgroundImage:
-                        'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                      backgroundSize: '20px 20px',
+                        'linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)',
+                      backgroundSize: '24px 24px',
                     }}
-                  ></div>
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute w-full h-8 bg-gradient-to-b from-transparent via-white/10 to-transparent animate-scan-line"></div>
-                  </div>
+                  />
                   <div className="relative z-10 text-center px-4">
-                    <span className="text-6xl block mb-2 drop-shadow-lg">{project.icon}</span>
-                    <p className="text-white/90 text-sm font-mono font-bold tracking-wider uppercase">
+                    <span className="text-6xl block mb-3 drop-shadow-lg animate-gentle-float" style={{ animationDelay: `${idx * 0.2}s` }}>
+                      {project.icon}
+                    </span>
+                    <p className="text-white/90 text-sm font-bold tracking-wider uppercase">
                       {project.repoName}
                     </p>
                   </div>
-                  <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-white/40"></div>
-                  <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-white/40"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-white/40"></div>
-                  <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-white/40"></div>
                 </div>
+
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-red-400 mb-2 text-glow">
-                    {project.icon} {project.title}
+                  <h3 className="text-2xl font-extrabold text-slate-900 mb-3">
+                    {project.title}
                   </h3>
-                  <p className="text-slate-300 mb-4 font-mono text-sm">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <p className="text-slate-500 mb-5 text-sm leading-relaxed">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 mb-5">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded-full text-sm font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
-                      >
+                      <span key={tech} className="skill-tag">
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="bg-slate-700/70 text-slate-100 px-3 py-1 rounded-full text-xs font-mono">
+
+                  <div className="flex flex-wrap gap-2 mb-6 text-xs font-semibold text-slate-400">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                       ⭐ {project.stars}
                     </span>
-                    <span className="bg-slate-700/70 text-slate-100 px-3 py-1 rounded-full text-xs font-mono">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                       🍴 {project.forks}
                     </span>
-                    <span className="bg-slate-700/70 text-slate-100 px-3 py-1 rounded-full text-xs font-mono">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                       Updated {formatUpdatedDate(project.updatedAt)}
                     </span>
                   </div>
-                  <div className="flex gap-4 flex-wrap">
+
+                  <div className="flex gap-3 flex-wrap pt-4 border-t border-slate-100">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors hover:animate-cyber-glow"
+                      className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-center text-sm font-bold text-slate-700 transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      {'>> GitHub'}
+                      GitHub
                     </a>
                     {project.homepageUrl && (
                       <a
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold transition-colors hover:animate-cyber-glow"
+                        className="flex-1 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-all hover:shadow-md hover:shadow-sky-500/20"
                       >
-                        {'>> Live Demo'}
+                        Live Demo
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
-            ))}
+              </article>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {featuredProjects.length === 0 && (
+          <div className="mb-16 rounded-xl border border-slate-200 bg-white p-6 text-center text-slate-400">
+            Featured repositories are not available right now.
           </div>
+        )}
 
-          {featuredProjects.length === 0 && (
-            <div className="mb-16 rounded-lg border border-red-500/30 bg-slate-800/40 p-6 text-center font-mono text-slate-300">
-              {'>> Featured repositories are not available right now.'}
-            </div>
-          )}
-
-          {/* Other Projects */}
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
-            ⚡ Other Notable Projects
+        <ScrollReveal>
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-2 text-center tracking-tight">
+            Other Notable Projects
           </h2>
+          <p className="text-center text-slate-400 text-sm mb-12">
+            Additional builds, experiments, and technical implementations
+          </p>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, idx) => (
-              <div
-                key={project.id}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden neon-border border border-red-500/30 hover:shadow-xl hover:shadow-red-600/30 transition-all transform hover:scale-105 animate-hologram-flicker"
-                style={{animationDelay: `${idx * 0.15}s`}}
-              >
-                <div className="h-24 bg-gradient-to-br from-slate-700 to-slate-800 relative flex items-center justify-center overflow-hidden hover:animate-neo-pulse">
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage:
-                        'linear-gradient(rgba(239,68,68,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.2) 1px, transparent 1px)',
-                      backgroundSize: '15px 15px',
-                    }}
-                  ></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherProjects.map((project, idx) => (
+            <ScrollReveal key={project.id} delay={idx * 0.08}>
+              <article className="glass-card overflow-hidden h-full">
+                <div className={`relative h-28 bg-gradient-to-br ${project.color} flex items-center justify-center overflow-hidden`}>
                   <span className="text-4xl relative z-10 drop-shadow-lg">{project.icon}</span>
-                  <div className="absolute top-1 left-1 w-3 h-3 border-t border-l border-red-500/40"></div>
-                  <div className="absolute top-1 right-1 w-3 h-3 border-t border-r border-red-500/40"></div>
-                  <div className="absolute bottom-1 left-1 w-3 h-3 border-b border-l border-red-500/40"></div>
-                  <div className="absolute bottom-1 right-1 w-3 h-3 border-b border-r border-red-500/40"></div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-red-400 mb-2 text-glow">
-                    {project.icon} {project.title}
+
+                <div className="p-5">
+                  <h3 className="text-xl font-extrabold text-slate-900 mb-2">
+                    {project.title}
                   </h3>
-                  <p className="text-slate-300 mb-4 text-sm font-mono">{project.description}</p>
+                  <p className="text-slate-500 mb-4 text-sm leading-relaxed">{project.description}</p>
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-2 py-1 rounded text-xs font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
-                      >
+                      <span key={tech} className="skill-tag text-[11px]">
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-slate-700/70 text-slate-100 px-2 py-1 rounded text-xs font-mono">
+
+                  <div className="flex flex-wrap gap-2 mb-5 text-xs font-semibold text-slate-400">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-2.5 py-1">
                       ⭐ {project.stars}
                     </span>
-                    <span className="bg-slate-700/70 text-slate-100 px-2 py-1 rounded text-xs font-mono">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-2.5 py-1">
                       🍴 {project.forks}
                     </span>
                   </div>
-                  <div className="flex gap-2 flex-wrap">
+
+                  <div className="flex gap-2 flex-wrap pt-4 border-t border-slate-100">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors hover:animate-cyber-glow"
+                      className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-600"
                     >
-                      {'>> GitHub'}
+                      GitHub
                     </a>
                     {project.homepageUrl && (
                       <a
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-mono font-semibold text-sm transition-colors hover:animate-cyber-glow"
+                        className="flex-1 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 px-3 py-2 text-center text-sm font-bold text-white transition-all hover:shadow-md hover:shadow-sky-500/20"
                       >
-                        {'>> Live Demo'}
+                        Live Demo
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
-            ))}
+              </article>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {otherProjects.length === 0 && (
+          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 text-center text-slate-400">
+            Additional repositories are not available right now.
           </div>
+        )}
+      </section>
 
-          {otherProjects.length === 0 && (
-            <div className="mt-6 rounded-lg border border-red-500/30 bg-slate-800/40 p-6 text-center font-mono text-slate-300">
-              {'>> Additional repositories are not available right now.'}
-            </div>
-          )}
-        </section>
-
-        {/* CTA Section */}
-        <section className="bg-gradient-to-r from-red-950/80 to-red-900/80 backdrop-blur-sm text-white py-16 border-t border-red-500/30 relative overflow-hidden">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl font-bold text-glow-lg font-mono mb-4">
-              {'< INTERESTED_IN_COLLABORATION />'}
+      <section className="relative overflow-hidden mt-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-500 bg-[length:200%_100%] animate-[gradient-flow_6s_ease_infinite]" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl font-extrabold text-white mb-4">
+              Interested in Collaboration?
             </h2>
-            <p className="text-lg text-red-100 mb-8 font-mono">
-              Let&apos;s build secure, innovative solutions together
+            <p className="text-lg text-sky-100 mb-8">
+              Let&apos;s build systems that make detection work faster and sharper
             </p>
             <a
               href="mailto:aman.imran@sjsu.edu"
-              className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all transform hover:scale-105 font-mono neon-border-glow"
+              className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all transform hover:scale-105 shadow-lg"
             >
-              {'>> SEND_MESSAGE'}
+              Get In Touch
             </a>
-          </div>
-        </section>
-      </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,245 +1,228 @@
 import Link from 'next/link';
 import AnimatedButton from '@/components/AnimatedButton';
+import ScrollReveal from '@/components/ScrollReveal';
 import { getPortfolioData } from '@/lib/github';
 import { GITHUB_PROFILE_URL } from '@/lib/links';
 
-function buildHeroLine(bio: string | null, company: string | null, location: string | null): string {
-  const defaultLine =
-    'SJSU Software Engineering grad. Building secure, innovative, and scalable apps in Python, TypeScript, Swift, and Java.';
-
-  if (!bio && !company && !location) {
-    return defaultLine;
-  }
-
-  const parts: string[] = [];
-  if (bio) {
-    parts.push(bio);
-  }
-  if (company) {
-    parts.push(`Currently shipping at ${company}.`);
-  }
-  if (location) {
-    parts.push(`Based in ${location}.`);
-  }
-
-  return parts.join(' ');
-}
-
 export default async function Home() {
   const { profile, featuredProjects, isFallback, fallbackReason } = await getPortfolioData();
-  const heroLine = buildHeroLine(profile.bio, profile.company, profile.location);
+  const heroLine =
+    'AI Safety operator building detection workflows, SQL/Python signal analysis, and Jarvis AI: a local-first macOS assistant for private operator automation.';
   const homeFeatured = featuredProjects.slice(0, 4);
 
   return (
-    <div className="cyber-grid">
-      {/* Animated Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-slate-900 to-slate-950/50"></div>
-        
-        {/* Floating Particles/Nodes */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-floating-particle"></div>
-        <div className="absolute top-40 right-20 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-red-500 rounded-full animate-floating-particle" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-floating-particle" style={{animationDelay: '1.5s'}}></div>
-      </div>
-
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="text-center">
-            {/* Animated Badge */}
+    <div>
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+        <div className="text-center">
+          {/* Badge */}
+          <ScrollReveal delay={0.1}>
             <div className="mb-6 inline-block">
-              <span className="inline-block bg-red-900/30 text-red-400 px-4 py-2 rounded-full text-sm font-semibold border border-red-500/50 animate-pulse-border animate-neo-pulse">
-                🔐 SECURITY_ENGINEER [ACTIVE]
+              <span className="inline-block bg-sky-50 text-sky-600 px-5 py-2 rounded-full text-sm font-bold border border-sky-200 arctic-pulse">
+                AI Safety Operator + Builder
               </span>
             </div>
+          </ScrollReveal>
 
-            {/* Animated Main Title */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-glow-pulse">
-              {'<'} {profile.name || 'Aman Imran'} {'>'}
+          {/* Main Title */}
+          <ScrollReveal delay={0.2}>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
+              {profile.name || 'Aman Imran'}
             </h1>
+          </ScrollReveal>
 
-            {/* Glitchy Subtitle */}
-            <div className="mb-4 relative h-12 flex items-center justify-center">
-              <p className="text-xl md:text-2xl text-red-500 font-mono font-semibold animate-glitch">
-                FULL-STACK DEVELOPER | CYBERSECURITY | AI & ML | MOBILE DEV
-              </p>
-            </div>
-
-            {/* Typing effect text */}
-            <p className="text-lg text-slate-300 mb-12 max-w-3xl mx-auto font-mono animate-float">
-              {`> ${heroLine}`}
-              <span className="terminal-cursor"></span>
+          {/* Subtitle */}
+          <ScrollReveal delay={0.3}>
+            <p className="text-xl md:text-2xl text-sky-600 font-semibold mb-4">
+              Trust & Safety &middot; Detection Systems &middot; SQL/Python &middot; Local-First AI
             </p>
+          </ScrollReveal>
 
-            {/* Animated Buttons */}
+          {/* Bio line */}
+          <ScrollReveal delay={0.4}>
+            <p className="text-lg text-slate-500 mb-12 max-w-3xl mx-auto leading-relaxed">
+              {heroLine}
+            </p>
+          </ScrollReveal>
+
+          {/* Buttons */}
+          <ScrollReveal delay={0.5}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AnimatedButton href="/projects" variant="primary">
-                🎯 INITIATE_PROJECTS.exe
+                View Projects
               </AnimatedButton>
               <AnimatedButton href="/about" variant="secondary">
-                📋 SYSTEM_INFO
+                About Me
               </AnimatedButton>
             </div>
-          </div>
-        </section>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* Enhanced Matrix Rain Background */}
-        <div className="absolute right-0 top-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute left-0 bottom-0 w-96 h-96 bg-red-600/3 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-
-        {/* Featured Section - Sci-Fi Theme */}
-        <section className="bg-gradient-to-b from-slate-900/50 to-slate-800/50 py-16 backdrop-blur-sm border-y border-red-500/20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
-              ⚡ ELITE_SECURITY_PROJECTS
+      {/* Featured Projects */}
+      <section className="bg-white/60 backdrop-blur-sm py-20 border-y border-sky-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-2 text-center tracking-tight">
+              Featured Projects
             </h2>
+            <p className="text-center text-slate-400 mb-12 text-sm">
+              Live repository data synced from GitHub
+            </p>
+          </ScrollReveal>
 
-            {isFallback && (
-              <div className="mb-8 rounded-lg border border-red-500/40 bg-red-950/30 p-4 text-sm font-mono text-red-200">
-                {'>> FALLBACK_MODE: '}
+          {isFallback && (
+            <ScrollReveal>
+              <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
                 {fallbackReason || 'Displaying last successful GitHub snapshot.'}
               </div>
-            )}
+            </ScrollReveal>
+          )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {homeFeatured.map((project, idx) => (
-                <div
-                  key={project.id}
-                  className="group bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:shadow-xl hover:shadow-red-600/30 transition-all duration-300 neon-border transform hover:scale-105 border border-red-500/30 animate-hologram-flicker"
-                  style={{animationDelay: `${idx * 0.2}s`}}
-                >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {homeFeatured.map((project, idx) => (
+              <ScrollReveal key={project.id} delay={idx * 0.1}>
+                <div className="glass-card p-6 h-full">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl animate-float">{project.icon}</span>
-                    <h3 className="text-xl font-bold text-red-400 text-glow uppercase">
+                    <span className="text-3xl animate-gentle-float" style={{ animationDelay: `${idx * 0.3}s` }}>
+                      {project.icon}
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900">
                       {project.repoName}
                     </h3>
                   </div>
-                  <p className="text-slate-300 mb-4 font-mono text-sm">{project.description}</p>
+                  <p className="text-slate-500 mb-4 text-sm leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-red-900/30 border border-red-500/50 text-red-300 px-3 py-1 rounded text-xs font-mono hover:bg-red-900/50 hover:text-red-200 transition-all"
-                      >
+                      <span key={tech} className="skill-tag">
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-4 text-sm font-mono">
+                  <div className="flex flex-wrap gap-4 text-sm font-semibold">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-400 hover:text-red-300 font-semibold transition-colors hover:animate-cyber-glow"
+                      className="text-sky-600 hover:text-sky-700 transition-colors"
                     >
-                      {'>> VIEW_SOURCE'}
+                      View Source &rarr;
                     </a>
                     {project.homepageUrl && (
                       <a
                         href={project.homepageUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-400 hover:text-red-300 font-semibold transition-colors hover:animate-cyber-glow"
+                        className="text-cyan-600 hover:text-cyan-700 transition-colors"
                       >
-                        {'>> LIVE_DEMO'}
+                        Live Demo &rarr;
                       </a>
                     )}
                   </div>
                 </div>
-              ))}
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {homeFeatured.length === 0 && (
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center text-slate-400">
+              No featured repositories available right now. Check back soon.
             </div>
+          )}
 
-            {homeFeatured.length === 0 && (
-              <div className="rounded-lg border border-red-500/30 bg-slate-800/40 p-6 text-center font-mono text-slate-300">
-                {'>> No featured repositories available right now. Check back soon.'}
-              </div>
-            )}
-
+          <ScrollReveal delay={0.3}>
             <div className="text-center mt-12">
               <Link
                 href="/projects"
-                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 font-mono neon-border-glow transform hover:scale-105 hover:animate-neo-pulse"
+                className="inline-block bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 transition-all duration-300 hover:scale-105"
               >
-                {'>>> LOAD_ALL_PROJECTS'}
+                View All Projects
               </Link>
             </div>
-          </div>
-        </section>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* Skills Section - Glowing Cards */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center text-glow-lg animate-cyber-glow">
-            🔧 SYSTEM_CAPABILITIES
+      {/* Skills Summary */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <ScrollReveal>
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-12 text-center tracking-tight">
+            Core Skills
           </h2>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'LANGUAGES',
-                skills: ['Java', 'Python', 'TypeScript', 'Swift', 'C++'],
-              },
-              {
-                title: 'FRAMEWORKS',
-                skills: ['Next.js', 'Spring Boot', 'FastAPI', 'SwiftUI', 'Tailwind'],
-              },
-              {
-                title: 'DATA_&_TOOLS',
-                skills: ['MySQL', 'scikit-learn', 'Git', 'Docker', 'LightGBM'],
-              },
-            ].map((category, idx) => (
-              <div
-                key={idx}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-lg shadow-lg p-6 neon-border border border-red-500/30 transform hover:scale-105 transition-all duration-300 hover:shadow-red-600/30 hover:animate-neo-pulse"
-              >
-                <h3 className="text-xl font-bold text-red-400 mb-4 font-mono text-glow">
-                  {`[${category.title}]`}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              title: 'Safety Ops',
+              icon: '🛡️',
+              skills: ['Abuse patterns', 'Policy gaps', 'AI misuse', 'Incident analysis', 'Calibration'],
+            },
+            {
+              title: 'Signal Workflows',
+              icon: '📊',
+              skills: ['SQL CTEs', 'Anomaly detection', 'Cohorts', 'Python automation', 'Triage'],
+            },
+            {
+              title: 'Engineering',
+              icon: '⚙️',
+              skills: ['Next.js', 'TypeScript', 'macOS apps', 'Local-first AI', 'Git'],
+            },
+          ].map((category, idx) => (
+            <ScrollReveal key={idx} delay={idx * 0.15}>
+              <div className="glass-card p-6 text-center h-full">
+                <div className="text-4xl mb-4 animate-gentle-float" style={{ animationDelay: `${idx * 0.5}s` }}>
+                  {category.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">
+                  {category.title}
                 </h3>
-                <ul className="text-slate-300 space-y-2 text-sm font-mono">
-                  {category.skills.map((skill, i) => (
-                    <li key={i} className="hover:text-red-400 transition-colors">
-                      {'>'} {skill}
-                    </li>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="skill-tag">
+                      {skill}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-        {/* CTA Section - Epic */}
-        <section className="bg-gradient-to-r from-red-950/80 to-red-900/80 backdrop-blur-sm text-white py-16 border-t border-red-500/30 relative overflow-hidden">
-          {/* Animated background elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500 to-transparent animate-shimmer"></div>
-          </div>
+      {/* CTA Section */}
+      <section className="relative overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-500 bg-[length:200%_100%] animate-[gradient-flow_6s_ease_infinite]" />
+        <div className="absolute inset-0 shimmer-arctic opacity-30" />
 
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl font-bold mb-4 text-glow-lg font-mono animate-cyber-glow">
-              {'< SECURITY_FIRST_DEVELOPMENT />'}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl font-extrabold text-white mb-4 tracking-tight">
+              Let&apos;s Build Something Together
             </h2>
-            <p className="text-lg mb-8 text-red-100 font-mono">
-              {'>> READY_FOR_COLLABORATION = true'}
+            <p className="text-lg text-sky-100 mb-8">
+              Open to safety engineering, AI evaluation, and detection-focused product work
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:aman.imran@sjsu.edu"
-                className="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-all duration-300 transform hover:scale-105 font-mono neon-border-glow hover:animate-neo-pulse"
+                className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                {'>> SEND_MESSAGE'}
+                Get In Touch
               </a>
               <a
                 href={GITHUB_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-mono border-2 border-red-500 hover:animate-neo-pulse"
+                className="inline-block bg-white/15 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-xl border-2 border-white/30 hover:bg-white/25 transition-all duration-300 hover:scale-105"
               >
-                {'>> VIEW_GITHUB'}
+                View GitHub
               </a>
             </div>
-          </div>
-        </section>
-      </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </div>
   );
 }

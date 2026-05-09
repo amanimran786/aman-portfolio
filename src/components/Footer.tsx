@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const githubUrl = GITHUB_PROFILE_URL;
   const displayName = 'Aman Imran';
-  const shortBio = 'Full-stack and security-focused engineer building reliable, scalable products.';
+  const shortBio = 'AI safety operator and software builder working across abuse detection, SQL/Python workflows, and local-first AI automation.';
 
   return (
     <footer className="bg-slate-900 text-white mt-12">
@@ -14,7 +14,7 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <h3 className="font-bold text-lg mb-4">{displayName}</h3>
-            <p className="text-slate-400 text-sm">{shortBio}</p>
+            <p className="text-slate-400 text-sm leading-relaxed">{shortBio}</p>
           </div>
 
           {/* Quick Links */}

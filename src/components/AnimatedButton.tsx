@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface AnimatedButtonProps {
   href: string;
@@ -7,22 +10,26 @@ interface AnimatedButtonProps {
 }
 
 export default function AnimatedButton({ href, children, variant = 'primary' }: AnimatedButtonProps) {
-  const baseStyles = "inline-block font-bold py-3 px-8 rounded-lg transition-all duration-300 transform active:scale-95 relative overflow-hidden group";
-  
-  const primaryStyles = "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white shadow-lg hover:shadow-red-600/50 neon-border-glow hover:scale-105";
-  
-  const secondaryStyles = "bg-slate-800 hover:bg-slate-700 text-slate-100 border-2 border-slate-600 hover:border-red-500 hover:scale-105";
+  const isPrimary = variant === 'primary';
 
   return (
-    <Link
-      href={href}
-      className={`${baseStyles} ${variant === 'primary' ? primaryStyles : secondaryStyles} active:animate-cyber-pulse`}
+    <motion.div
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
     >
-      {/* Cybersecurity glow effect on hover */}
-      <span className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/30 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></span>
-      
-      {/* Text content */}
-      <span className="relative z-10">{children}</span>
-    </Link>
+      <Link
+        href={href}
+        className={`inline-block font-bold py-3 px-8 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+          isPrimary
+            ? 'bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40'
+            : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-sky-300 hover:text-sky-600 shadow-sm'
+        }`}
+      >
+        {/* Shimmer effect on hover */}
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+        <span className="relative z-10">{children}</span>
+      </Link>
+    </motion.div>
   );
 }

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,17 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-red-500/20 shadow-lg shadow-red-900/10">
+    <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      {/* Animated gradient accent bar */}
+      <div className="h-[3px] arctic-gradient" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="font-bold text-xl text-red-400 font-mono hover:text-red-300 transition-colors text-glow">
-            {'<'} Aman Imran {'/>'}
+          <Link
+            href="/"
+            className="font-extrabold text-xl text-slate-900 tracking-tight hover:text-sky-600 transition-colors duration-300"
+          >
+            Aman Imran
           </Link>
 
           {/* Desktop Navigation */}
@@ -32,13 +39,20 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-md text-sm font-mono transition-all duration-200 ${
+                  className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'text-red-400 bg-red-500/10 border border-red-500/30'
-                      : 'text-slate-300 hover:text-red-400 hover:bg-slate-800/60'
+                      ? 'text-sky-600 bg-sky-50'
+                      : 'text-slate-600 hover:text-sky-600 hover:bg-sky-50/50'
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-indicator"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-sky-500 rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -46,7 +60,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-slate-300 hover:text-red-400 transition-colors"
+            className="md:hidden text-slate-600 hover:text-sky-600 transition-colors p-2 rounded-lg hover:bg-sky-50"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -61,27 +75,37 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pb-4 border-t border-red-500/20 mt-2 pt-3 space-y-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block py-2 px-3 rounded-md font-mono text-sm transition-all ${
-                    isActive
-                      ? 'text-red-400 bg-red-500/10 border border-red-500/30'
-                      : 'text-slate-300 hover:text-red-400 hover:bg-slate-800/60'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="pb-4 border-t border-sky-100 mt-2 pt-3 space-y-1">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`block py-2.5 px-4 rounded-lg text-sm font-semibold transition-all ${
+                        isActive
+                          ? 'text-sky-600 bg-sky-50'
+                          : 'text-slate-600 hover:text-sky-600 hover:bg-sky-50/50'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

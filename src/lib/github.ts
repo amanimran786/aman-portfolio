@@ -196,12 +196,12 @@ export const getPortfolioData = cache(async (): Promise<PortfolioData> => {
     const featuredProjects = [
       latestWorldViewRepo ? toPortfolioProject(latestWorldViewRepo, true, 0) : null,
       ...FEATURED_REPO_NAMES.map((repoName, index) => {
-      const repo = repoMap.get(repoName.toLowerCase());
-      if (!repo) {
-        return null;
-      }
-      return toPortfolioProject(repo, true, index + 1);
-    }),
+        const repo = repoMap.get(repoName.toLowerCase());
+        if (!repo) {
+          return null;
+        }
+        return toPortfolioProject(repo, true, index + 1);
+      }),
     ].filter((repo): repo is PortfolioProject => repo !== null);
 
     const featuredNames = new Set(featuredProjects.map((repo) => repo.repoName.toLowerCase()));
