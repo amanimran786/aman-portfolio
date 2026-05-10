@@ -14,7 +14,6 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/projects', label: 'Projects' },
-    { href: '/dsa', label: 'DSA Lab' },
     { href: '/skills', label: 'Skills' },
   ];
 

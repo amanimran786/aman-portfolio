@@ -15,11 +15,25 @@ export default async function Home() {
     'SQL/Python detection workflows',
     'Incident response + abuse investigations',
   ];
+  const caseStudyHighlights = [
+    {
+      label: 'OSINT WorldView',
+      detail: 'Threat intelligence dashboard for open-source signal monitoring, incident tracking, and operational visibility.',
+    },
+    {
+      label: 'AI Malware Detection',
+      detail: 'LightGBM classification workflow with feature pipelines, scalable analysis, and detection accuracy focus.',
+    },
+    {
+      label: 'Phishing Detector',
+      detail: 'ML-backed Chrome extension trained on 10K+ URLs to surface malicious patterns before user compromise.',
+    },
+  ];
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-18 md:py-24">
         <div className="text-center">
           {/* Badge */}
           <ScrollReveal delay={0.1}>
@@ -46,7 +60,7 @@ export default async function Home() {
 
           {/* Bio line */}
           <ScrollReveal delay={0.4}>
-            <p className="text-lg text-slate-500 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-slate-500 mb-8 max-w-3xl mx-auto leading-relaxed">
               {heroLine}
             </p>
           </ScrollReveal>
@@ -82,6 +96,31 @@ export default async function Home() {
                   {point}
                 </div>
               ))}
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.7}>
+            <div className="mt-6 text-left max-w-5xl mx-auto">
+              <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-500">
+                  Case Study Focus
+                </p>
+                <p className="text-sm font-medium text-slate-400">
+                  Recruiter-readable evidence of detection, investigation, and systems work
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {caseStudyHighlights.map((item) => (
+                  <article key={item.label} className="glass-card p-4 h-full">
+                    <h3 className="text-sm font-extrabold text-slate-900 mb-2">
+                      {item.label}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-500">
+                      {item.detail}
+                    </p>
+                  </article>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
         </div>
