@@ -6,11 +6,13 @@ type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
+  hydrated: boolean;
   toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
+  hydrated: false,
   toggleTheme: () => {},
 });
 
@@ -32,11 +34,22 @@ export function useTheme() {
 }
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>('light');
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setTheme(getInitialTheme());
+      setHydrated(true);
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
     document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
+  }, [hydrated, theme]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
@@ -48,7 +61,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, hydrated, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
