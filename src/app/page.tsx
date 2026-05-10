@@ -69,7 +69,7 @@ export default async function Home() {
           <ScrollReveal delay={0.5}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AnimatedButton href="/projects" variant="primary">
-                View Case Studies
+                View Relevant Projects
               </AnimatedButton>
               <a
                 href={RESUME_URL}
@@ -103,10 +103,10 @@ export default async function Home() {
             <div className="mt-6 text-left max-w-5xl mx-auto">
               <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-500">
-                  Case Study Focus
+                  Relevant Project Highlights
                 </p>
                 <p className="text-sm font-medium text-slate-400">
-                  Recruiter-readable evidence of detection, investigation, and systems work
+                  Projects that map directly to my security, T&S, AI safety, and detection skillset
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
