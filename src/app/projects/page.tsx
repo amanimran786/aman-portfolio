@@ -1,5 +1,6 @@
 import { getPortfolioData } from '@/lib/github';
 import ScrollReveal from '@/components/ScrollReveal';
+import { CONTACT_EMAIL } from '@/lib/links';
 
 function formatUpdatedDate(updatedAt: string): string {
   return new Date(updatedAt).toLocaleDateString('en-US', {
@@ -88,23 +89,23 @@ export default async function Projects() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-6 text-xs font-semibold text-slate-400">
-                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                    <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] px-3 py-1">
                       ⭐ {project.stars}
                     </span>
-                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                    <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] px-3 py-1">
                       🍴 {project.forks}
                     </span>
-                    <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                    <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] px-3 py-1">
                       Updated {formatUpdatedDate(project.updatedAt)}
                     </span>
                   </div>
 
-                  <div className="flex gap-3 flex-wrap pt-4 border-t border-slate-100">
+                  <div className="flex gap-3 flex-wrap pt-4 border-t border-slate-100 dark:border-slate-700">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-center text-sm font-bold text-slate-700 transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-600"
+                      className="flex-1 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-[var(--surface)] px-4 py-2.5 text-center text-sm font-bold text-slate-700 dark:text-slate-200 transition-all hover:border-sky-300 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400"
                     >
                       GitHub
                     </a>
@@ -126,7 +127,7 @@ export default async function Projects() {
         </div>
 
         {featuredProjects.length === 0 && (
-          <div className="mb-16 rounded-xl border border-slate-200 bg-white p-6 text-center text-slate-400">
+          <div className="mb-16 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[var(--surface)] p-6 text-center text-slate-400 dark:text-slate-500">
             Featured repositories are not available right now.
           </div>
         )}
@@ -163,20 +164,20 @@ export default async function Projects() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-5 text-xs font-semibold text-slate-400">
-                    <span className="rounded-full border border-slate-200 bg-white/70 px-2.5 py-1">
+                    <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] px-2.5 py-1">
                       ⭐ {project.stars}
                     </span>
-                    <span className="rounded-full border border-slate-200 bg-white/70 px-2.5 py-1">
+                    <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] px-2.5 py-1">
                       🍴 {project.forks}
                     </span>
                   </div>
 
-                  <div className="flex gap-2 flex-wrap pt-4 border-t border-slate-100">
+                  <div className="flex gap-2 flex-wrap pt-4 border-t border-slate-100 dark:border-slate-700">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-600"
+                      className="flex-1 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-[var(--surface)] px-3 py-2 text-center text-sm font-bold text-slate-700 dark:text-slate-200 transition-all hover:border-sky-300 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400"
                     >
                       GitHub
                     </a>
@@ -198,7 +199,7 @@ export default async function Projects() {
         </div>
 
         {otherProjects.length === 0 && (
-          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 text-center text-slate-400">
+          <div className="mt-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[var(--surface)] p-6 text-center text-slate-400 dark:text-slate-500">
             Additional repositories are not available right now.
           </div>
         )}
@@ -215,7 +216,7 @@ export default async function Projects() {
               Let&apos;s build systems that make detection work faster and sharper
             </p>
             <a
-              href="mailto:aman.imran@sjsu.edu"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all transform hover:scale-105 shadow-lg"
             >
               Get In Touch

@@ -1,4 +1,5 @@
 import ScrollReveal from '@/components/ScrollReveal';
+import { CONTACT_EMAIL, RESUME_URL } from '@/lib/links';
 
 export default function About() {
   return (
@@ -11,7 +12,7 @@ export default function About() {
             About Me
           </h1>
           <p className="text-lg text-slate-400 font-medium">
-            AI safety operations, detection systems, and local-first automation
+            Security, Trust & Safety, AI risk, and detection systems
           </p>
         </ScrollReveal>
 
@@ -19,19 +20,19 @@ export default function About() {
         <ScrollReveal delay={0.15}>
           <div className="glass-card p-8 mt-8 mb-8">
             <p className="text-lg text-slate-700 mb-6">
-              I&apos;m <span className="text-sky-600 font-bold">Aman Imran</span>, an AI Safety operator with a software engineering background and 5+ years across Trust & Safety environments.
+              I&apos;m <span className="text-sky-600 font-bold">Aman Imran</span>, a Security, Trust & Safety, and AI-focused professional with 7+ years across large-scale platform environments including YouTube, Meta, Google, TikTok, and Anthropic.
             </p>
 
             <p className="text-slate-600 mb-6 leading-relaxed">
-              My work sits where abuse patterns, policy boundaries, and data systems meet. I&apos;ve investigated fraud, coordinated behavior, account abuse, AI misuse, jailbreaks, prompt injection, and model manipulation, then translated those findings into cleaner signals and better operating workflows.
+              My work sits where high-risk investigations, incident response, policy enforcement, and data systems meet. I&apos;ve led investigations into fraud, account abuse, coordinated behavior, jailbreaks, prompt injection, and adversarial misuse, then translated those findings into stronger detection strategies and operational playbooks.
             </p>
 
             <p className="text-slate-600 mb-6 leading-relaxed">
-              I&apos;m SQL-heavy and Python-capable: CTEs, window functions, anomaly review, cohort analysis, enrichment scripts, and triage workflows. The way I like to work is simple: signal first, root cause second, system fix third.
+              I use SQL and Python to turn ambiguous risk signals into measurable workflows: anomaly detection, telemetry review, triage automation, enrichment pipelines, signal QA, and precision/recall improvements.
             </p>
 
             <p className="text-slate-600 leading-relaxed">
-              I&apos;m also building <span className="text-sky-600 font-bold">Jarvis AI</span>, a local-first macOS assistant for private desktop automation. That project is the engineering center of gravity here: practical AI, operator control, and no default cloud fallback.
+              I also bring security operations experience from GSOC environments: threat monitoring, SIEM-style alerting, access control systems, incident command, audit logging, post-incident review, and cross-functional response with Engineering, Policy, Security, and Product.
             </p>
           </div>
         </ScrollReveal>
@@ -40,23 +41,23 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <ScrollReveal delay={0.1} direction="left">
             <div className="glass-card p-6 h-full">
-              <h3 className="text-xl font-bold text-sky-600 mb-4">🧭 Operator Focus</h3>
+              <h3 className="text-xl font-bold text-sky-600 mb-4">🧭 Risk & Investigation Focus</h3>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>AI misuse, jailbreaks, prompt injection, and policy evasion</span>
+                  <span>End-to-end incident response: detection, triage, containment, remediation</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>Fraud, coordinated behavior, and account abuse investigations</span>
+                  <span>AI misuse, jailbreaks, prompt injection, fraud, and account abuse</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>Signal quality, calibration, and false-negative reduction</span>
+                  <span>False-positive/false-negative analysis and enforcement quality</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>Policy, product, engineering, and operations collaboration</span>
+                  <span>Escalation management across Policy, Product, Engineering, and Security</span>
                 </li>
               </ul>
             </div>
@@ -64,23 +65,23 @@ export default function About() {
 
           <ScrollReveal delay={0.2} direction="right">
             <div className="glass-card p-6 h-full">
-              <h3 className="text-xl font-bold text-sky-600 mb-4">⚙️ Builder Focus</h3>
+              <h3 className="text-xl font-bold text-sky-600 mb-4">⚙️ Data & Systems Focus</h3>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>Jarvis AI local-first macOS assistant</span>
+                  <span>SQL pipelines processing high-volume events and enforcement signals</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>SQL/Python workflows for triage and signal review</span>
+                  <span>Python automation for triage, enrichment, anomaly detection, and reporting</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>ML threat detection and phishing detection projects</span>
+                  <span>Monitoring, alerting, audit logging, dashboards, and operational visibility</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-400 mt-1">▸</span>
-                  <span>B.S. Software Engineering from San Jos&eacute; State University</span>
+                  <span>B.S. Software Engineering from San Jos&eacute; State University, Dec 2025</span>
                 </li>
               </ul>
             </div>
@@ -91,17 +92,23 @@ export default function About() {
         <ScrollReveal delay={0.15}>
           <div className="glass-card p-8">
             <h2 className="text-2xl font-bold text-sky-600 mb-6">How I Work</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <h4 className="font-bold text-slate-800 mb-2">Signal before certainty</h4>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                  Metrics are clues, not conclusions. I normalize the data, look for distribution shifts, and separate labeling issues from true behavior changes.
+                  Metrics are clues, not conclusions. I validate telemetry, look for distribution shifts, and separate labeling issues from true behavior changes.
                 </p>
               </div>
               <div>
-                <h4 className="font-bold text-slate-800 mb-2">Systems over symptoms</h4>
+                <h4 className="font-bold text-slate-800 mb-2">Incident to system fix</h4>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                  One bad actor is an incident. A repeatable abuse pattern is a system gap, and the durable fix usually lives in tooling, policy, or feedback loops.
+                  I move from detection and triage to root cause, remediation, post-incident review, and detection coverage improvements.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-800 mb-2">Operational ownership</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  I build SOPs, dashboards, escalation paths, and workflows that help teams make consistent decisions in high-risk environments.
                 </p>
               </div>
             </div>
@@ -115,14 +122,24 @@ export default function About() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <ScrollReveal>
             <h2 className="text-3xl font-extrabold text-white mb-4">
-              Interested in working together?
+              Relevant for security, T&S, AI safety, and risk roles.
             </h2>
-            <a
-              href="mailto:aman.imran@sjsu.edu"
-              className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              Get In Touch
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                View Resume
+              </a>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-block bg-white/15 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-xl border-2 border-white/30 hover:bg-white/25 transition-all duration-300 hover:scale-105"
+              >
+                Contact Me
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </section>

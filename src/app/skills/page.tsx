@@ -1,4 +1,5 @@
 import ScrollReveal from '@/components/ScrollReveal';
+import { CONTACT_EMAIL } from '@/lib/links';
 
 export default function Skills() {
   const skillCategories = [
@@ -28,9 +29,9 @@ export default function Skills() {
       skills: ["TypeScript", "Next.js", "React", "Swift", "Java", "FastAPI", "Git", "Tailwind"],
     },
     {
-      category: "Local-First AI",
+      category: "Security Operations",
       icon: "⚙️",
-      skills: ["macOS automation", "Private workflows", "Tool orchestration", "Context handling", "Operator control", "No cloud fallback"],
+      skills: ["GSOC", "Threat monitoring", "SIEM-style alerting", "Access control", "Incident command", "Audit logging"],
     },
     {
       category: "Detection Projects",
@@ -96,7 +97,7 @@ export default function Skills() {
               I build the tools I wish safety teams had during live investigations.
             </p>
             <a
-              href="mailto:aman.imran@sjsu.edu"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-block bg-white text-sky-600 font-bold py-3 px-8 rounded-xl hover:bg-sky-50 transition-all transform hover:scale-105 shadow-lg"
             >
               Get In Touch

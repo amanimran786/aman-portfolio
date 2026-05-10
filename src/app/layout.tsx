@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import ParticleField from "@/components/ParticleField";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Aman Imran | AI Safety & Software Portfolio",
-  description: "AI safety operator and software builder focused on trust and safety systems, detection workflows, and local-first AI automation.",
+  description: "Security, Trust & Safety, and AI-focused professional with experience in incident response, abuse detection, SQL/Python investigations, and detection systems.",
 };
 
 export default function RootLayout({
@@ -27,17 +28,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-[#f8fafc]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        style={{ background: 'var(--background)' }}
       >
-        <PageTransition />
-        <ParticleField />
-        <Navigation />
-        <main className="flex-grow relative z-10">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <PageTransition />
+          <ParticleField />
+          <Navigation />
+          <main className="flex-grow relative z-10">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

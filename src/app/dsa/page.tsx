@@ -167,7 +167,7 @@ export default function DsaLab() {
                 <span>Daily Streak</span>
                 <button
                   onClick={() => setStreak((s) => s + 1)}
-                  className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sky-600 transition-colors hover:bg-sky-100"
+                  className="rounded-full border border-sky-200 dark:border-sky-500/30 bg-sky-50 dark:bg-sky-500/10 px-3 py-1 text-sky-600 dark:text-sky-400 transition-colors hover:bg-sky-100 dark:hover:bg-sky-500/20"
                   aria-label="Increment streak"
                 >
                   +1
@@ -212,7 +212,7 @@ export default function DsaLab() {
                       className={`relative rounded-xl border p-4 transition-all ${
                         done
                           ? "border-emerald-200 bg-emerald-50/80 shadow-lg shadow-emerald-500/10"
-                          : "border-sky-100 bg-white/70 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-500/10"
+                          : "border-sky-100 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] hover:border-sky-300 hover:shadow-lg hover:shadow-sky-500/10"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -224,8 +224,8 @@ export default function DsaLab() {
                           onClick={() => setCleared((prev) => ({ ...prev, [track.id]: !done }))}
                           className={`shrink-0 text-xs font-bold px-3 py-1 rounded-full border transition-colors ${
                             done
-                              ? "bg-emerald-100 text-emerald-700 border-emerald-200"
-                              : "bg-sky-50 text-sky-600 border-sky-200 hover:bg-sky-100"
+                              ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/30"
+                              : "bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-200 dark:border-sky-500/30 hover:bg-sky-100 dark:hover:bg-sky-500/20"
                           }`}
                           aria-label={`Mark ${track.title} as ${done ? "uncleared" : "cleared"}`}
                         >
@@ -237,13 +237,13 @@ export default function DsaLab() {
                           <p className="text-xs uppercase text-slate-400 font-bold tracking-wide">Core quests</p>
                           <div className="flex flex-wrap gap-2 mt-2">
                             {track.quests.map((quest) => (
-                              <span key={quest} className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-600">
+                              <span key={quest} className="rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-[var(--surface)] px-2.5 py-1 text-xs text-slate-600 dark:text-slate-400">
                                 {quest}
                               </span>
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-lg bg-sky-50 border border-sky-100 px-3 py-2 text-sm font-semibold text-sky-700">
+                        <div className="rounded-lg bg-sky-50 dark:bg-sky-500/10 border border-sky-100 dark:border-sky-500/20 px-3 py-2 text-sm font-semibold text-sky-700 dark:text-sky-300">
                           Boss fight: {track.boss}
                         </div>
                       </div>
@@ -262,7 +262,7 @@ export default function DsaLab() {
               </div>
               <div className="space-y-3">
                 {dailyMissions.map((mission) => (
-                  <div key={mission.title} className="rounded-xl border border-sky-100 bg-white/70 p-4">
+                  <div key={mission.title} className="rounded-xl border border-sky-100 dark:border-sky-500/15 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] p-4">
                     <p className="text-sm text-sky-600 font-bold">{mission.title}</p>
                     <ul className="mt-3 space-y-2 text-slate-600 text-sm">
                       {mission.tasks.map((task) => (
@@ -288,10 +288,10 @@ export default function DsaLab() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {sprintTemplates.map((sprint) => (
-                  <div key={sprint.title} className="rounded-xl border border-sky-100 bg-white/70 p-4">
+                  <div key={sprint.title} className="rounded-xl border border-sky-100 dark:border-sky-500/15 bg-white/70 dark:bg-[rgba(19,28,49,0.5)] p-4">
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="text-base font-extrabold text-slate-900">{sprint.title}</h3>
-                      <span className="rounded-full bg-sky-50 px-2.5 py-1 text-xs font-bold text-sky-600">
+                      <span className="rounded-full bg-sky-50 dark:bg-sky-500/10 px-2.5 py-1 text-xs font-bold text-sky-600 dark:text-sky-400">
                         {sprint.duration}
                       </span>
                     </div>
@@ -321,9 +321,9 @@ export default function DsaLab() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 rounded-xl bg-sky-50/70 border border-sky-100 p-4">
-                <p className="text-xs font-bold text-sky-600 uppercase tracking-wide">Boss practice</p>
-                <p className="text-slate-600 text-sm mt-1">Pick one old boss and solve from memory. No peeking for 20 minutes.</p>
+              <div className="mt-5 rounded-xl bg-sky-50/70 dark:bg-sky-500/8 border border-sky-100 dark:border-sky-500/15 p-4">
+                <p className="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wide">Boss practice</p>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Pick one old boss and solve from memory. No peeking for 20 minutes.</p>
               </div>
             </div>
           </ScrollReveal>

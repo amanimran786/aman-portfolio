@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/70 dark:bg-[rgba(11,17,32,0.8)] backdrop-blur-xl border-b border-sky-100 dark:border-sky-900/30 shadow-sm">
       {/* Animated gradient accent bar */}
       <div className="h-[3px] arctic-gradient" />
 
@@ -26,7 +27,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className="font-extrabold text-xl text-slate-900 tracking-tight hover:text-sky-600 transition-colors duration-300"
+            className="font-extrabold text-xl text-slate-900 dark:text-white tracking-tight hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
           >
             Aman Imran
           </Link>
@@ -41,8 +42,8 @@ export default function Navigation() {
                   href={link.href}
                   className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'text-sky-600 bg-sky-50'
-                      : 'text-slate-600 hover:text-sky-600 hover:bg-sky-50/50'
+                      ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50/50 dark:hover:bg-sky-500/5'
                   }`}
                 >
                   {link.label}
@@ -56,22 +57,30 @@ export default function Navigation() {
                 </Link>
               );
             })}
+
+            {/* Theme Toggle */}
+            <div className="ml-3 pl-3 border-l border-slate-200 dark:border-slate-700">
+              <ThemeToggle />
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-slate-600 hover:text-sky-600 transition-colors p-2 rounded-lg hover:bg-sky-50"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Mobile: Toggle + Menu Button */}
+          <div className="flex md:hidden items-center gap-3">
+            <ThemeToggle />
+            <button
+              className="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors p-2 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-500/10"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -84,7 +93,7 @@ export default function Navigation() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="pb-4 border-t border-sky-100 mt-2 pt-3 space-y-1">
+              <div className="pb-4 border-t border-sky-100 dark:border-sky-900/30 mt-2 pt-3 space-y-1">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
@@ -93,8 +102,8 @@ export default function Navigation() {
                       href={link.href}
                       className={`block py-2.5 px-4 rounded-lg text-sm font-semibold transition-all ${
                         isActive
-                          ? 'text-sky-600 bg-sky-50'
-                          : 'text-slate-600 hover:text-sky-600 hover:bg-sky-50/50'
+                          ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10'
+                          : 'text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50/50 dark:hover:bg-sky-500/5'
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
