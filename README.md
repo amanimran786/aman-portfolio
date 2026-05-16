@@ -75,7 +75,6 @@ src/
 │   ├── about/page.tsx        # About page
 │   ├── projects/page.tsx     # Projects page (live GitHub data)
 │   ├── skills/page.tsx       # Skills page
-│   ├── api/contact/route.ts  # Contact API route (validation + rate limiting)
 │   ├── layout.tsx            # Root layout + metadata
 │   └── globals.css           # Global styles & theme
 ├── components/               # Navigation, Footer, ThemeProvider, ParticleField, etc.
@@ -128,14 +127,6 @@ The portfolio uses Tailwind CSS v4 (CSS-first configuration). To customize:
 1. Edit the CSS variables and `@theme` block in `src/app/globals.css` for colors and fonts
 2. Modify component files for styling changes
 3. Use standard Tailwind utilities throughout
-
-## 🌐 MCP Server Integration (Optional)
-
-To add backend functionality, you can integrate a Model Context Protocol (MCP) server for:
-- Dynamic project data
-- Contact form submissions
-- Blog functionality
-- Analytics
 
 ## 📱 Browser Support
 
