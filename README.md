@@ -28,14 +28,14 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 ## 📦 Getting Started
 
 ### Prerequisites
-- Node.js 18+ installed
+- Node.js 20+ installed
 - npm or yarn package manager
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/aman-portfolio.git
+git clone https://github.com/amanimran786/aman-portfolio.git
 cd aman-portfolio
 
 # Install dependencies
@@ -73,13 +73,16 @@ src/
 ├── app/
 │   ├── page.tsx              # Home page
 │   ├── about/page.tsx        # About page
-│   ├── projects/page.tsx     # Projects page
+│   ├── projects/page.tsx     # Projects page (live GitHub data)
 │   ├── skills/page.tsx       # Skills page
-│   ├── layout.tsx            # Root layout
-│   └── globals.css           # Global styles
-└── components/
-    ├── Navigation.tsx        # Navigation bar
-    └── Footer.tsx            # Footer component
+│   ├── api/contact/route.ts  # Contact API route (validation + rate limiting)
+│   ├── layout.tsx            # Root layout + metadata
+│   └── globals.css           # Global styles & theme
+├── components/               # Navigation, Footer, ThemeProvider, ParticleField, etc.
+├── lib/
+│   ├── github.ts             # GitHub API sync + fallback
+│   └── links.ts              # Shared contact/profile links
+└── types/github.ts           # GitHub & portfolio types
 ```
 
 ## 🚢 Deployment to Vercel (Free & Recommended)
@@ -88,7 +91,7 @@ src/
 
 ```bash
 # Initialize GitHub repo (if not already done)
-git remote add origin https://github.com/yourusername/aman-portfolio.git
+git remote add origin https://github.com/amanimran786/aman-portfolio.git
 git branch -M main
 git push -u origin main
 ```
@@ -114,16 +117,15 @@ git push -u origin main
 
 ### Update Your Information
 
-- **Contact email:** Edit footer in `src/components/Footer.tsx`
-- **LinkedIn URL:** Update social links in `src/components/Footer.tsx`
-- **Projects:** Modify project data in `src/app/projects/page.tsx`
+- **Contact email / LinkedIn / GitHub / resume:** Edit the shared constants in `src/lib/links.ts`
+- **Featured projects:** Projects sync live from GitHub — choose which repos to feature via `FEATURED_REPO_NAMES` in `src/lib/github.ts`
 - **Skills:** Update skills in `src/app/skills/page.tsx`
 
 ## 🎨 Styling
 
-The portfolio uses Tailwind CSS utility classes. To customize:
+The portfolio uses Tailwind CSS v4 (CSS-first configuration). To customize:
 
-1. Edit `tailwind.config.ts` for color schemes
+1. Edit the CSS variables and `@theme` block in `src/app/globals.css` for colors and fonts
 2. Modify component files for styling changes
 3. Use standard Tailwind utilities throughout
 
@@ -158,16 +160,10 @@ This project is open source and available under the MIT License.
 
 ## 📞 Contact
 
-- **Email:** aman.imran@sjsu.edu
-- **LinkedIn:** [aman-i-636013111](https://www.linkedin.com/in/aman-i-636013111/)
-- **GitHub:** [yourprofile](https://github.com)
+- **Email:** abdullahimran234@gmail.com
+- **LinkedIn:** [amanimran](https://www.linkedin.com/in/amanimran/)
+- **GitHub:** [amanimran786](https://github.com/amanimran786)
 
 ---
 
 Built with ❤️ by Aman Imran
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

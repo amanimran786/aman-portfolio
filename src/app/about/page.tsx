@@ -20,7 +20,7 @@ export default function About() {
         <ScrollReveal delay={0.15}>
           <div className="glass-card p-8 mt-8 mb-8">
             <p className="text-lg text-slate-700 mb-6">
-              I&apos;m <span className="text-sky-600 font-bold">Aman Imran</span>, a Security, Trust & Safety, and AI-focused professional with 7+ years across large-scale platform environments including YouTube, Meta, Google, TikTok, and Anthropic.
+              I&apos;m <span className="text-sky-600 font-bold">Aman Imran</span>, a Security, Trust & Safety, and AI-focused professional with 7+ years across large-scale platform environments including YouTube, Meta, Google, TikTok, and Anthropic &mdash; experience I built while earning my B.S. in Software Engineering at San Jos&eacute; State University.
             </p>
 
             <p className="text-slate-600 mb-6 leading-relaxed">
@@ -79,14 +79,21 @@ export default function About() {
                   <span className="text-sky-400 mt-1">▸</span>
                   <span>Monitoring, alerting, audit logging, dashboards, and operational visibility</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-sky-400 mt-1">▸</span>
-                  <span>B.S. Software Engineering from San Jos&eacute; State University, Dec 2025</span>
-                </li>
               </ul>
             </div>
           </ScrollReveal>
         </div>
+
+        {/* Education */}
+        <ScrollReveal delay={0.1}>
+          <div className="glass-card p-6 mb-8">
+            <h3 className="text-xl font-bold text-sky-600 mb-2">🎓 Education</h3>
+            <p className="text-slate-600">
+              <span className="font-semibold text-slate-800">B.S. Software Engineering</span> — San Jos&eacute; State University
+              <span className="text-slate-400"> · Dec 2025</span>
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Leadership */}
         <ScrollReveal delay={0.15}>

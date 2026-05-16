@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import ParticleField from "@/components/ParticleField";
 import ThemeProvider from "@/components/ThemeProvider";
+import { PORTFOLIO_SITE_URL } from "@/lib/links";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,9 +18,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteTitle = "Aman Imran | AI Safety & Software Portfolio";
+const siteDescription =
+  "Security, Trust & Safety, and AI-focused professional working across incident response, abuse detection, SQL/Python investigations, and detection systems.";
+
 export const metadata: Metadata = {
-  title: "Aman Imran | AI Safety & Software Portfolio",
-  description: "Security, Trust & Safety, and AI-focused professional with experience in incident response, abuse detection, SQL/Python investigations, and detection systems.",
+  metadataBase: new URL(PORTFOLIO_SITE_URL),
+  title: siteTitle,
+  description: siteDescription,
+  authors: [{ name: "Aman Imran" }],
+  keywords: [
+    "Trust & Safety",
+    "AI Safety",
+    "Security",
+    "Incident Response",
+    "Abuse Detection",
+    "SQL",
+    "Python",
+    "Software Engineer",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: PORTFOLIO_SITE_URL,
+    siteName: "Aman Imran Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
